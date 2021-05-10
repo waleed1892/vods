@@ -1,5 +1,5 @@
 import React from 'react'
-import Game from './Game'
+import Game from './game'
 import Vod from './Vod'
 
 const LatestVod = (props) => {

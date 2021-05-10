@@ -4,8 +4,6 @@ import {getAccessToken, getVideosByUserId} from '../rest/api'
 import {client_id} from '../global/twitchInfo'
 import {Loading} from '../global/Loading'
 import Head from "next/head";
-import Link from "next/link";
-import Cookies from 'cookies'
 
 const cookieCutter = require('cookie-cutter');
 
@@ -58,7 +56,6 @@ const Longest = ({initialVods}) => {
     const getVods = () => {
         // console.log(cookieCutter.get('token'))
         const auth_token = cookieCutter(document).get('token')
-        console.log(auth_token)
         const params = {
             auth: auth_token,
             client_id: client_id,

@@ -6,6 +6,7 @@ import {Loading} from '../global/Loading'
 // import {Helmet} from "react-helmet";
 import GameContent from "../components/Games/gameContent";
 import Head from "next/head";
+import cookies from 'cookie-cutter';
 
 
 const GamePage = ({initialGames}) => {
@@ -32,6 +33,7 @@ const GamePage = ({initialGames}) => {
 
     // Get streamersList
     const getGamesList = () => {
+        const auth_token = cookies.get('token');
         const params = {
             auth: auth_token,
             client_id: client_id,
@@ -65,7 +67,6 @@ const GamePage = ({initialGames}) => {
 }
 
 export default GamePage
-import Cookies from 'cookies'
 
 export async function getServerSideProps({req, res}) {
     const token = await getAccessToken(req, res)

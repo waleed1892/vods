@@ -13,9 +13,7 @@ import ListContent from '../components/ListContent/index'
 import {Loading} from '../global/Loading'
 // import {useLocation} from "react-router-dom";
 import styled from 'styled-components';
-import Link from "next/link";
-import Cookies from "cookies";
-import {useRouter} from "next/router";
+import AdSense from "react-adsense";
 
 const cookies = require('cookie-cutter')
 
@@ -48,6 +46,13 @@ const SearchResultFail = () => {
                 <StyledDiv>
                     Search Results
                 </StyledDiv>
+                <AdSense.Google
+                    client='ca-pub-3548998999865028'
+                    slot='79915789369'
+                    style={{display: 'block'}}
+                    layout='in-article'
+                    format='fluid'
+                />
                 <div className="w-full card">
                     <SearchResultDiv>
                         No twitch vods found

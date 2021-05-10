@@ -5,7 +5,8 @@ import StreamerList from '../components/StreamerList'
 import {Loading} from '../global/Loading'
 // import {Helmet} from "react-helmet";
 import Head from "next/head";
-import Link from "next/link";
+
+const cookieCutter = require('cookie-cutter')
 
 const Streamers = ({initialStreamers}) => {
     const [streamers, setStreamers] = useState(initialStreamers.data)
@@ -38,7 +39,7 @@ const Streamers = ({initialStreamers}) => {
 
     // Get streamersList
     const getStreamersList = () => {
-        const auth_token = JSON.parse(localStorage.getItem('twitchToken'))['token']
+        const auth_token = cookieCutter.get('token')
         const params = {
             auth: auth_token,
             client_id: client_id,

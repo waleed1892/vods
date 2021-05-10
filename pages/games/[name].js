@@ -4,9 +4,8 @@ import {getAccessToken, getGameByGameName, getLatest, getToken, getVideosByGameI
 import {client_id} from '../../global/twitchInfo'
 // import { useParams } from 'react-router-dom'
 import {Loading} from '../../global/Loading'
-import Cookies from "cookies";
 
-const cookie = require('cookie-cutter')
+const cookies = require('cookie-cutter')
 
 const StreamerVods = ({game, gameVideos}) => {
     const [vods, setVods] = useState(gameVideos.data)
@@ -109,7 +108,6 @@ export async function getServerSideProps(ctx) {
         game_name: name
     }
     const data = await getGameByGameName(params)
-
     params = {
         auth: token,
         client_id: client_id,

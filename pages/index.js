@@ -33,7 +33,7 @@ const Home = ({initialVods}) => {
 
     // Get streamersList
     const getTopVods = () => {
-        const auth_token = cookieCutter.get('token');
+        const auth_token = cookie.get('token');
         const params = {
             auth: auth_token,
             client_id: client_id,

@@ -55,9 +55,7 @@ const About = () => {
 
                 <Head>
                     <title>Twitch Vods Archive - About us</title>
-
                 </Head>
-
             </StyledDiv>
         </div>
 

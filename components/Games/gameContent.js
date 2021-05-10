@@ -5,6 +5,7 @@ import {SkeleGameListLoading} from '../../global/skleton'
 // import {Helmet} from "react-helmet";
 import Head from "next/head";
 import {StyledDiv} from "../ListContent/style";
+import AdSense from "react-adsense";
 
 const Content = (props) => {
     const {games} = props
@@ -17,6 +18,13 @@ const Content = (props) => {
                 <div style={{flexBasis: '100%', height: 0}}></div>
                 <h2>Best Streaming Service</h2>
             </PageTitleSection>
+            <AdSense.Google
+                client='ca-pub-3548998999865028'
+                slot='79915789369'
+                style={{display: 'block'}}
+                layout='in-article'
+                format='fluid'
+            />
             <div className="mt-3">
             </div>
 

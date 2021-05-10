@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from "cookies";
 
 axios.defaults.withCredentials = false;
-axios.defaults.baseURL = process.env.development ? `http://twitch-app.test` : 'https://www.vods.tv';
+axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? `http://twitch-app.test` : 'https://www.vods.tv';
 
 // axios.defaults.timeout = 5000;
 

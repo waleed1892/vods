@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useHistory, useParams} from 'react-router-dom'
+// import {useHistory, useParams} from 'react-router-dom'
 import {PlayerSection, StyledSmall, UserSection, VideoPlayer} from './style'
 import {getVodbyId} from '../../rest/api'
 import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
@@ -12,8 +12,8 @@ import {Helmet} from "react-helmet";
 
 
 const Player = () => {
-  let history = useHistory()
-  const { video_id } = useParams();
+  // let history = useHistory()
+  // const { video_id } = useParams();
   const [vod, setVod] = useState({})
   const auth_token = JSON.parse(localStorage.getItem('twitchToken'))['token']
 
@@ -44,7 +44,7 @@ const Player = () => {
   }
 
   const goVods = (user_name) => {
-    history.push(`/streamer/${user_name}`)
+    // history.push(`/streamer/${user_name}`)
   }
 
   return (

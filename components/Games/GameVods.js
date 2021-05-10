@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ListContent from '../../components/ListContent'
 import { getGameByGameName, getVideosByGameId } from '../../rest/api'
 import { client_id } from '../../global/twitchInfo'
-import { useParams } from 'react-router-dom'
+// import { useParams } from 'react-router-dom'
 import { Loading } from '../../global/Loading'
 
 const StreamerVods = () => {

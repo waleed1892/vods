@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import ListContent from '../../components/ListContent'
+import ListContent from '../../components/ListContent/index'
 import {getAccessToken, getGameByGameName, getLatest, getToken, getVideosByGameId} from '../../rest/api'
 import {client_id} from '../../global/twitchInfo'
 // import { useParams } from 'react-router-dom'

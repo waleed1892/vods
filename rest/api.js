@@ -8,9 +8,9 @@ axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? `http://twitch
 
 export const getToken = async () => {
     const params = {
-        client_secret: 'v0f1otrjnyuyth0xf65doeoqihdsd4',
+        client_secret: 'lwu2v4k930gp20xarh304p985saj9a',
         grant_type: 'client_credentials',
-        client_id: 'd6cffgyp1eia4eyr2askmkc0so7u24'
+        client_id: '8p0q2xqpeomj5vnsk6gnwbd6msmyst'
     }
     return await axios.post(`/api/getToken`, {params})
         .then(data => data.data)

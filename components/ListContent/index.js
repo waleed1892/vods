@@ -36,13 +36,13 @@ const ListContent = (props) => {
 
     return (
         <div className="container">
-            <StyledDiv>
-                <h1>
-                    {title === homeTitle ? homeTitle : `Twitch Vods Archive - ${title}`}
-                </h1>
-                <div style={{flexBasis: '100%', height: 0}}></div>
-                <h2>Best Streaming Service</h2>
-            </StyledDiv>
+            {/*<StyledDiv>*/}
+            {/*    <h1>*/}
+            {/*        {title === homeTitle ? homeTitle : `Twitch Vods Archive - ${title}`}*/}
+            {/*    </h1>*/}
+            {/*    <div style={{flexBasis: '100%', height: 0}}></div>*/}
+            {/*    <h2>Best Streaming Service</h2>*/}
+            {/*</StyledDiv>*/}
             <AdSense.Google
                 client='ca-pub-3548998999865028'
                 slot='8898003939'

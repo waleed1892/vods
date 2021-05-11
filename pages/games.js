@@ -7,6 +7,7 @@ import {Loading} from '../global/Loading'
 import GameContent from "../components/Games/gameContent";
 import Head from "next/head";
 import cookies from 'cookie-cutter';
+import {PageTitleSection} from "../components/Games/style";
 
 
 const GamePage = ({initialGames}) => {
@@ -52,6 +53,13 @@ const GamePage = ({initialGames}) => {
 
     return (
         <>
+            <div className='container'>
+                <PageTitleSection>
+                    <h1>Trending Twitch Vods By Games</h1>
+                    <div style={{flexBasis: '100%', height: 0}}></div>
+                    <h2>Best Streaming Service</h2>
+                </PageTitleSection>
+            </div>
             <GameContent games={games}/>
             {isLoading && <Loading/>}
 

@@ -58,6 +58,13 @@ const Home = ({initialVods}) => {
                 <meta name="description"
                       content="The Biggest Twitch Vods Archive Online, Search videos, Clips, Streamers, Games and get all streams in one place"/>
             </Head>
+            <div className='container'>
+                <StyledDiv>
+                    <h1>Twitch Vods Archive - Trending</h1>
+                    <div style={{flexBasis: '100%', height: 0}}></div>
+                    <h2>Best Streaming Service</h2>
+                </StyledDiv>
+            </div>
             <ListContent vods={vods} title="Twitch Vods Archive - Trending"/>
 
 
@@ -76,6 +83,7 @@ const Home = ({initialVods}) => {
 
 export default Home
 import Cookies from 'cookies'
+import {StyledDiv} from "../components/ListContent/style";
 
 export async function getServerSideProps({req, res}) {
     const token = await getAccessToken(req, res)

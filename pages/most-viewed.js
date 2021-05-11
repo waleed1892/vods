@@ -75,6 +75,13 @@ const MostViewed = ({initialVods}) => {
 
     return (
         <>
+            <div className='container'>
+                <StyledDiv>
+                    <h1>Twitch Vods Archive - Most Viewed</h1>
+                    <div style={{flexBasis: '100%', height: 0}}></div>
+                    <h2>Best Streaming Service</h2>
+                </StyledDiv>
+            </div>
             <ListContent vods={vods} filter={true} title="Most viewed"/>
             {
                 isLoading && <Loading/>
@@ -91,6 +98,7 @@ const MostViewed = ({initialVods}) => {
 export default MostViewed
 
 import Cookies from 'cookies'
+import {StyledDiv} from "../components/ListContent/style";
 
 export async function getServerSideProps({req, res}) {
     const token = await getAccessToken(req, res)

@@ -4,6 +4,7 @@ import {getAccessToken, getGameByGameName, getLatest, getToken, getVideosByGameI
 import {client_id} from '../../global/twitchInfo'
 // import { useParams } from 'react-router-dom'
 import {Loading} from '../../global/Loading'
+import {StyledDiv} from "../../components/ListContent/style";
 
 const cookies = require('cookie-cutter')
 
@@ -90,6 +91,13 @@ const StreamerVods = ({game, gameVideos}) => {
 
     return (
         <>
+            <div className='container'>
+                <StyledDiv>
+                    <h1>Twitch Vods Archive - {title}</h1>
+                    <div style={{flexBasis: '100%', height: 0}}></div>
+                    <h2>Best Streaming Service</h2>
+                </StyledDiv>
+            </div>
             <ListContent vods={vods} filter={false} title={title}/>
             {isLoading && <Loading/>}
         </>

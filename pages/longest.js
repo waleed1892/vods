@@ -4,6 +4,7 @@ import {getAccessToken, getVideosByUserId} from '../rest/api'
 import {client_id} from '../global/twitchInfo'
 import {Loading} from '../global/Loading'
 import Head from "next/head";
+import {StyledDiv} from "../components/ListContent/style";
 
 const cookieCutter = require('cookie-cutter');
 
@@ -76,6 +77,13 @@ const Longest = ({initialVods}) => {
     return (
 
         <>
+            <div className='container'>
+                <StyledDiv>
+                    <h1>Twitch Vods Archive - Longest</h1>
+                    <div style={{flexBasis: '100%', height: 0}}></div>
+                    <h2>Best Streaming Service</h2>
+                </StyledDiv>
+            </div>
             <ListContent vods={vods} filter={false} title="Longest"/>
             {isLoading && <Loading/>}
             <Head>

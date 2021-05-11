@@ -5,6 +5,7 @@ import {client_id} from '../../global/twitchInfo'
 import {Loading} from '../../global/Loading'
 import ListContent from "../../components/ListContent";
 import Cookies from "cookies";
+import {StyledDiv} from "../../components/ListContent/style";
 
 const cookie = require('cookie-cutter')
 
@@ -79,6 +80,13 @@ const StreamerVods = ({user, videos}) => {
 
     return (
         <>
+            <div className='container'>
+                <StyledDiv>
+                    <h1>Twitch Vods Archive - {title}</h1>
+                    <div style={{flexBasis: '100%', height: 0}}></div>
+                    <h2>Best Streaming Service</h2>
+                </StyledDiv>
+            </div>
             <ListContent vods={vods} filter={false} title={title}/>
             {isLoading && <Loading/>}
         </>

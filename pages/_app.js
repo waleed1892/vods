@@ -13,6 +13,11 @@ function MyApp({Component, pageProps}) {
     const [pageLoading, setPageLoading] = useState(false);
 
     useEffect(() => {
+        const jssStyles = document.querySelector('#jss-server-side')
+        if (jssStyles && jssStyles.parentNode)
+            jssStyles.parentNode.removeChild(jssStyles)
+    }, [])
+    useEffect(() => {
         router.events.on('routeChangeStart', function () {
             setPageLoading(true)
         })

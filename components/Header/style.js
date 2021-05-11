@@ -45,6 +45,7 @@ export const StyledSearchIcon = styled.div`
 export const StyledSearch = styled.div`
     position: relative;
     background-color: white;
+    border:none;
     border-radius: 5px;
     margin-left: -155px;
     @media (max-width: 1570px) {
@@ -67,6 +68,7 @@ export const SearchInput = styled(InputBase)`
     input {
         transition: width 0.5s;
         width: 300px;
+        border:none;
         &:focus {
             width: 400px;
         }

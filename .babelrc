@@ -7,7 +7,7 @@
       "styled-components",
       {
         "ssr": true,
-        "preprocess": false
+        "preprocess": true
       }
     ]
   ]

@@ -16,6 +16,7 @@ const Home = ({initialVods}) => {
     // const auth_token = JSON.parse(localStorage.getItem('twitchToken'))['token']
 
     useEffect(() => {
+        console.log('tet')
         window.scrollTo(0, 0)
         // getTopVods()
     }, [])

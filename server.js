@@ -15,7 +15,7 @@ app
         server.use((req, res, next) => {
             const hostname = req.hostname === 'www.vods.tv' ? 'vods.tv' : req.hostname;
 
-            if (req.headers['x-forwarded-proto'] === 'http' || req.hostname === 'www.vods.tv') {
+            if (req.headers['x-forwarded-proto'] === 'http' || req.hostname === 'www.vods.tv' || req.hostname === 'vods.tv') {
                 res.redirect(301, `https://${hostname}${req.url}`);
                 return;
             }

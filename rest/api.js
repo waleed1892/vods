@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from "cookies";
 
 axios.defaults.withCredentials = false;
-axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? `https://www.vods.tv` : 'https://www.vods.tv';
+axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? `https://api.vods.tv` : 'https://api.vods.tv';
 
 // axios.defaults.timeout = 5000;
 

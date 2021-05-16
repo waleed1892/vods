@@ -59,13 +59,15 @@ const Player = ({video}) => {
                 <meta name="description" content="All The Streamers Twitch Vods In One Place"
                 />
             </Head>
-            <AdSense.Google
-                client='ca-pub-3548998999865028'
-                slot='4679830398'
-                style={{display: 'block'}}
-                layout='in-article'
-                format='fluid'
-            />
+            <div className='mt-2'>
+                <AdSense.Google
+                    client='ca-pub-3548998999865028'
+                    slot='4679830398'
+                    style={{display: 'block'}}
+                    layout='in-article'
+                    format='fluid'
+                />
+            </div>
             {
                 Object.keys(vod).length > 0 ?
                     <PlayerSection>

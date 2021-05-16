@@ -61,7 +61,7 @@ const Player = ({video}) => {
             </Head>
             <AdSense.Google
                 client='ca-pub-3548998999865028'
-                slot='5062973778'
+                slot='4679830398'
                 style={{display: 'block'}}
                 layout='in-article'
                 format='fluid'

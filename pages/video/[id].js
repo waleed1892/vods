@@ -12,6 +12,7 @@ import {SkelePlayerLoading} from '../../global/skleton'
 import Head from "next/head";
 import {useRouter} from "next/router";
 import Cookies from "cookies";
+import AdSense from "react-adsense";
 
 
 const Player = ({video}) => {
@@ -53,6 +54,18 @@ const Player = ({video}) => {
 
     return (
         <div className="container">
+            <Head>
+                <title>{vod.user_name}</title>
+                <meta name="description" content="All The Streamers Twitch Vods In One Place"
+                />
+            </Head>
+            <AdSense.Google
+                client='ca-pub-3548998999865028'
+                slot='5062973778'
+                style={{display: 'block'}}
+                layout='in-article'
+                format='fluid'
+            />
             {
                 Object.keys(vod).length > 0 ?
                     <PlayerSection>
@@ -77,14 +90,6 @@ const Player = ({video}) => {
                     </PlayerSection> :
                     <SkelePlayerLoading/>
             }
-
-            <Head>
-                <title>{vod.user_name}</title>
-                <meta name="description" content="All The Streamers Twitch Vods In One Place"
-                />
-            </Head>
-
-
         </div>
     )
 }

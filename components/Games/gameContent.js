@@ -16,7 +16,7 @@ const Content = (props) => {
 
             <AdSense.Google
                 client='ca-pub-3548998999865028'
-                slot='79915789369'
+                slot='8562756152'
                 style={{display: 'block'}}
                 layout='in-article'
                 format='fluid'

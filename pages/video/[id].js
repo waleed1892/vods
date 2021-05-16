@@ -92,6 +92,15 @@ const Player = ({video}) => {
                     </PlayerSection> :
                     <SkelePlayerLoading/>
             }
+            <div className='mt-2'>
+                <AdSense.Google
+                    client='ca-pub-3548998999865028'
+                    slot='8614727048'
+                    style={{display: 'block'}}
+                    layout='in-article'
+                    format='fluid'
+                />
+            </div>
         </div>
     )
 }

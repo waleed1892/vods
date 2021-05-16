@@ -16,6 +16,16 @@ function MyApp({Component, pageProps}) {
         const jssStyles = document.querySelector('#jss-server-side')
         if (jssStyles && jssStyles.parentNode)
             jssStyles.parentNode.removeChild(jssStyles)
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-145394651-21', {
+            page_path: window.location.pathname,
+        });
     }, [])
     useEffect(() => {
         router.events.on('routeChangeStart', function () {

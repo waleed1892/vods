@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Cookies from "cookies";
+import moment from "moment";
 
 axios.defaults.withCredentials = false;
 axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? `https://api.vods.tv` : 'https://api.vods.tv';
@@ -25,7 +26,10 @@ export const getAccessToken = async (req, res) => {
     if (!token) {
         token = await getToken();
         token = JSON.parse(token)
-        cookies.set('token', token.access_token, {httpOnly: false})
+        cookies.set('token', token.access_token, {
+            httpOnly: false,
+            expires: moment().add(token.expires_in, "seconds").toDate()
+        })
         token = token.access_token
     }
     return token

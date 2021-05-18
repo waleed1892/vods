@@ -107,7 +107,8 @@ const Player = ({video}) => {
 
 export default Player
 
-export async function getServerSideProps(ctx) {
+export async function getServerSideProps(ctx)
+{
     const {req, res} = ctx
     const {id} = ctx.params
     const token = await getAccessToken(req, res)

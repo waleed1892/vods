@@ -28,7 +28,7 @@ export const getAccessToken = async (req, res) => {
         token = JSON.parse(token)
         cookies.set('token', token.access_token, {
             httpOnly: false,
-            expires: moment().add(token.expires_in, "seconds").toDate()
+            expires: moment().add(token.expires_in, "milliseconds").toDate()
         })
         token = token.access_token
     }

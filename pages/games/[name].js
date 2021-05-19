@@ -93,9 +93,9 @@ const StreamerVods = ({game, gameVideos}) => {
         <>
             <div className='container'>
                 <StyledDiv>
-                    <h1>Twitch Vods Archive - {title}</h1>
+                    <h1>{title} Twitch Vods</h1>
                     <div style={{flexBasis: '100%', height: 0}}></div>
-                    <h2>Best Streaming Service</h2>
+                    <h2></h2>
                 </StyledDiv>
             </div>
             <ListContent vods={vods} filter={false} title={title}/>

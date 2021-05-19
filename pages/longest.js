@@ -79,9 +79,12 @@ const Longest = ({initialVods}) => {
         <>
             <div className='container'>
                 <StyledDiv>
-                    <h1>Twitch Vods Archive - Longest</h1>
+                    <h1>Longest – Twitch Vods</h1>
                     <div style={{flexBasis: '100%', height: 0}}></div>
-                    <h2>Best Streaming Service</h2>
+                    <p>Are you in it for the long haul? Check out our archive of the longest Twitch Vods to ever be
+                        recorded! Pick a Vod to play in the background while you complete chores, work on a project, or
+                        even as you take a nap. Some of the longest videos include marathon gameplay, challenges, and
+                        more!</p>
                 </StyledDiv>
             </div>
             <ListContent vods={vods} filter={false} title="Longest"/>

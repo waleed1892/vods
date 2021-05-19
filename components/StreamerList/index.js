@@ -25,9 +25,12 @@ const StreamerList = (props) => {
     return (
         <div className="container">
             <StyledDiv>
-                <h1>Twitch Streamers</h1>
+                <h1>Streamers – Twitch Vods</h1>
                 <div style={{flexBasis: '100%', height: 0}}></div>
-                <h2>Best Streaming Service</h2>
+                <p>We made picking a Vod an easy decision! You know what you like, and we are here to bring you exactly
+                    what you want to watch. Choose the next Twitch Vods you watch by sorting through your favorite
+                    streamers. Each stream has their Twitch Name available alongside an image and their follower
+                    count!</p>
             </StyledDiv>
             <AdSense.Google
                 client='ca-pub-3548998999865028'

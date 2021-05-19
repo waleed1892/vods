@@ -5,6 +5,7 @@ import {client_id} from '../global/twitchInfo'
 import {Loading} from '../global/Loading'
 // import {Helmet} from "react-helmet";
 import Head from 'next/head'
+import Link from 'next/link'
 
 const cookie = require('cookie-cutter')
 
@@ -61,9 +62,15 @@ const Home = ({initialVods}) => {
             </Head>
             <div className='container'>
                 <StyledDiv>
-                    <h1>Twitch Vods Archive - Trending</h1>
+                    <h1>Trending – Twitch Vods</h1>
                     <div style={{flexBasis: '100%', height: 0}}></div>
-                    <h2>Best Streaming Service</h2>
+                    <p>These <Link href='/'><a className='text-white'>Twitch Vods</a></Link> are trending for a reason! That’s right, these
+                        clips are
+                        quickly
+                        becoming the most popular in their categories. Here you can view up-and-coming content that has
+                        gone viral or is sure to go viral soon. From gameplay and commentary to sporting events, there
+                        is trending content for everyone!
+                    </p>
                 </StyledDiv>
             </div>
             <ListContent vods={vods} title="Twitch Vods Archive - Trending"/>

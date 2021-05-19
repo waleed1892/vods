@@ -77,9 +77,9 @@ const MostViewed = ({initialVods}) => {
         <>
             <div className='container'>
                 <StyledDiv>
-                    <h1>Twitch Vods Archive - Most Viewed</h1>
+                    <h1>Most Viewed – Twitch Vods</h1>
                     <div style={{flexBasis: '100%', height: 0}}></div>
-                    <h2>Best Streaming Service</h2>
+                    <p>Our “most viewed” <Link href='/most-viewed'><a className='text-white'>Twitch Vods</a></Link> are the clips that have made their mark in our minds and hearts, and will forever be industry favorites! These Vods provide only the most hilarious, engaging, or even helpful commentary along with interesting visuals. You’ll be sure to stop by this section time-after-time to revisit your favorites!</p>
                 </StyledDiv>
             </div>
             <ListContent vods={vods} filter={true} title="Most viewed"/>

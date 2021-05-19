@@ -8,6 +8,7 @@ import GameContent from "../components/Games/gameContent";
 import Head from "next/head";
 import cookies from 'cookie-cutter';
 import {PageTitleSection} from "../components/Games/style";
+import Link from 'next/link'
 
 
 const GamePage = ({initialGames}) => {
@@ -55,9 +56,15 @@ const GamePage = ({initialGames}) => {
         <>
             <div className='container'>
                 <PageTitleSection>
-                    <h1>Trending Twitch Vods By Games</h1>
+                    <h1>Games – Twitch Vods</h1>
                     <div style={{flexBasis: '100%', height: 0}}></div>
-                    <h2>Best Streaming Service</h2>
+                    <p>Do you have a favorite game that you prefer to watch on Twitch? This section of Twitch Vods are
+                        exclusively sorted by game for your convenience. Here you can find top streamers and Twitch Vods
+                        under categories such as <Link href='/games/Grand%20Theft%20Auto%20V'><a className='text-white'>“Grand
+                            Theft Auto V”</a></Link>, <Link href='/games/World%20of%20Warcraft'><a
+                            className='text-white'>“World of Warcraft: Shadowlands”</a></Link>,
+                        <Link href='/games/League%20of%20Legends'><a className='text-white'>“League of
+                            Legends”</a></Link>, and more!</p>
                 </PageTitleSection>
             </div>
             <GameContent games={games}/>

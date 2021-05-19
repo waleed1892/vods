@@ -56,7 +56,7 @@ const Home = ({initialVods}) => {
     return (
         <>
             <Head>
-                <title>Twitch Vods Archive</title>
+                <title>Twitch Vods - Trending Clips, Most Viewed, Longest, Streamers</title>
                 <meta name="description"
                       content="The Biggest Twitch Vods Archive Online, Search videos, Clips, Streamers, Games and get all streams in one place"/>
             </Head>

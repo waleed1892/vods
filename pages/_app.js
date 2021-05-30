@@ -1,9 +1,8 @@
 import '../styles/globals.css'
 import Header from "../components/Header";
-import {useState, useEffect} from "react";
+import {useEffect, useState} from "react";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import ErrorBoundary from "../global/ErrorBoundary";
 // import NProgress from "nprogress"
 import {useRouter} from "next/router"
 import {PageLoading} from "../global/Loading";

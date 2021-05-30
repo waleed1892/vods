@@ -39,11 +39,10 @@ const Vod = (props) => {
     const showVideoList = (username) => {
         router.push(`/streamer/${username}`)
     }
-
     return (
         <div className="col-sm-3 col-md-3 col-lg-3 mb-3">
             <div className="position-relative" style={{cursor: "pointer"}} onClick={() => player(vod.id)}>
-                <img src={imgUrlConvert(vod.thumbnail_url)} className="rounded w-100"/>
+                <img loading={"lazy"} src={imgUrlConvert(vod.thumbnail_url)} alt={vod.title} className="rounded w-100"/>
             </div>
             <div>
                 <StyledP>{vod.title}</StyledP>

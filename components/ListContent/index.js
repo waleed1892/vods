@@ -1,5 +1,4 @@
 import React from 'react'
-import {StyledDiv} from './style'
 import Game from '../Vod/filterVod'
 import Vod from '../Vod/streamerVod'
 import GameList from '../Game'

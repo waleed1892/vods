@@ -39,7 +39,7 @@ const Streamer = (props) => {
   return (
     <div className="col-lg-2 col-md-3 col-sm-4 mb-3" onClick={() => goVods(streamer.login)} style={{ cursor: "pointer" }}>
       <div className="p-2">
-        <img src={defaultImg} className="rounded w-100" />
+        <img loading={"lazy"} src={defaultImg} alt={'search'} className="rounded w-100" />
       </div>
       <div>
         <StyledH1><AccountCircleRoundedIcon /><span className="ml-1">{streamer.login}</span></StyledH1>

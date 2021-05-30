@@ -1,13 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {
-    getAccessToken,
-    getGameByGameName,
-    getLatest,
-    getStreambyUserName,
-    getStreamerVods,
-    getToken,
-    getVideosByGameId
-} from '../rest/api'
+import {getAccessToken, getGameByGameName, getStreambyUserName, getStreamerVods, getVideosByGameId} from '../rest/api'
 import {client_id} from '../global/twitchInfo'
 import ListContent from '../components/ListContent/index'
 import {Loading} from '../global/Loading'

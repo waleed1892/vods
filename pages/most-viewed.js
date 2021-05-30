@@ -6,6 +6,7 @@ import {Loading} from '../global/Loading'
 // import {Helmet} from "react-helmet";
 import Head from "next/head";
 import Link from "next/link";
+import {StyledDiv} from "../components/ListContent/style";
 
 
 const MostViewed = ({initialVods}) => {
@@ -96,9 +97,6 @@ const MostViewed = ({initialVods}) => {
 }
 
 export default MostViewed
-
-import Cookies from 'cookies'
-import {StyledDiv} from "../components/ListContent/style";
 
 export async function getServerSideProps({req, res}) {
     const token = await getAccessToken(req, res)

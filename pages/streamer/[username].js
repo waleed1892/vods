@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import {getAccessToken, getStreambyUserName, getStreamerVods, getToken, getVodbyId} from '../../rest/api'
+import {getAccessToken, getStreambyUserName, getStreamerVods} from '../../rest/api'
 import {client_id} from '../../global/twitchInfo'
 // import {useParams} from 'react-router-dom'
 import {Loading} from '../../global/Loading'
 import ListContent from "../../components/ListContent";
-import Cookies from "cookies";
 import {StyledDiv} from "../../components/ListContent/style";
 
 const cookie = require('cookie-cutter')

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {checkToken, getToken} from '../rest/api'
 import moment from 'moment'
 import {PageLoading} from './Loading'
-import cookieCutter from 'cookie-cutter'
 
 export default function ErrorBoundary(props) {
     // const [enableToken, setEnableToken] = useState(null)

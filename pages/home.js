@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import ListContent from '../components/ListContent'
-import {getAccessToken, getLatest, getToken} from '../rest/api'
+import {getAccessToken, getLatest} from '../rest/api'
 import {client_id} from '../global/twitchInfo'
 import {Loading} from '../global/Loading'
 // import {Helmet} from "react-helmet";
 import Head from 'next/head'
+import {StyledDiv} from "../components/ListContent/style";
 
 const cookie = require('cookie-cutter')
 
@@ -82,8 +83,6 @@ const Home = ({initialVods}) => {
 }
 
 export default Home
-import Cookies from 'cookies'
-import {StyledDiv} from "../components/ListContent/style";
 
 export async function getServerSideProps({req, res}) {
     const token = await getAccessToken(req, res)

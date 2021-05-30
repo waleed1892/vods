@@ -42,7 +42,7 @@ const Vod = (props) => {
     return (
         <div className="col-sm-6 col-md-4 col-lg-3 mb-3">
             <div className="position-relative" style={{cursor: "pointer"}} onClick={() => player(vod.id)}>
-                <img src={imgUrlConvert(vod.thumbnail_url)} className="rounded w-100"/>
+                <img loading={"lazy"} src={imgUrlConvert(vod.thumbnail_url)} alt={vod.title} className="rounded w-100"/>
                 {title === "Most viewed" && <StyledSpan>{vod.view_count} views</StyledSpan>}
             </div>
             <div>

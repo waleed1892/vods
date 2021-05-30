@@ -55,7 +55,7 @@ const FilterVod = (props) => {
     return (
         <div className="col-sm-6 col-md-4 col-lg-3 mb-3">
             <div className="position-relative" style={{cursor: "pointer"}} onClick={() => player(vod._id)}>
-                <img src={imgUrlConvert(vod['preview'].template)} className="rounded w-100"/>
+                <img src={imgUrlConvert(vod['preview'].template)} alt={vod.title} className="rounded w-100"/>
                 {title === "Most viewed" && <StyledSpan>{vod.views} views</StyledSpan>}
             </div>
             <div>

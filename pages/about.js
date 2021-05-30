@@ -3,7 +3,6 @@ import styled from 'styled-components';
 // import {Helmet} from "react-helmet";
 import AdSense from 'react-adsense';
 import Head from "next/head";
-import Link from 'next/link'
 
 
 export const StyledDiv = styled.div`

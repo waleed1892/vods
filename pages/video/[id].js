@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 // import {useHistory, useParams} from 'react-router-dom'
 import {PlayerSection, StyledSmall, UserSection, VideoPlayer} from '../../components/Player/style'
-import {getAccessToken, getLatest, getToken, getVodbyId} from '../../rest/api'
+import {getAccessToken, getVodbyId} from '../../rest/api'
 import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
@@ -11,7 +11,6 @@ import {SkelePlayerLoading} from '../../global/skleton'
 // import {Helmet} from "react-helmet";
 import Head from "next/head";
 import {useRouter} from "next/router";
-import Cookies from "cookies";
 import AdSense from "react-adsense";
 
 
@@ -73,6 +72,7 @@ const Player = ({video}) => {
                     <PlayerSection>
                         <VideoPlayer>
                             <iframe
+                                title={vod.title}
                                 src={`https://player.twitch.tv/?video=v${vod.id}&parent=www.vods.tv&parent=vods.tv`}
                                 height="100%"
                                 width="100%"

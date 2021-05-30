@@ -1,10 +1,7 @@
 import React from 'react'
-import {PageTitleSection} from './style'
 import Game from '../../components/Game'
 import {SkeleGameListLoading} from '../../global/skleton'
 // import {Helmet} from "react-helmet";
-import Head from "next/head";
-import {StyledDiv} from "../ListContent/style";
 import AdSense from "react-adsense";
 
 const Content = (props) => {

@@ -62,6 +62,7 @@ const Player = () => {
                     <PlayerSection>
                         <VideoPlayer>
                             <iframe
+                                title={vod.title}
                                 src={`https://player.twitch.tv/?video=v${vod.id}&parent=www.vods.tv&parent=vods.tv`}
                                 height="100%"
                                 width="100%"

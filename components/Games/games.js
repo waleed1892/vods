@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import GameContent from './gameContent'
-import { getGamesTop } from '../../rest/api'
-import { client_id } from '../../global/twitchInfo'
-import { Loading } from '../../global/Loading'
+import {getGamesTop} from '../../rest/api'
+import {client_id} from '../../global/twitchInfo'
+import {Loading} from '../../global/Loading'
 import {Helmet} from "react-helmet";
 
 

@@ -71,7 +71,6 @@ const Streamers = ({initialStreamers}) => {
 }
 
 export default Streamers
-import Cookies from 'cookies'
 
 export async function getServerSideProps({req, res}) {
     const token = await getAccessToken(req, res)

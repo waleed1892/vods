@@ -76,9 +76,9 @@ const StreamerVods = () => {
       .catch(error => console.log(JSON.stringify(error)));
   }
 
-  useEffect(() => {
-    console.log(queryAfter)
-  }, [queryAfter])
+  // useEffect(() => {
+  //   console.log(queryAfter)
+  // }, [queryAfter])
 
   return (
     <>

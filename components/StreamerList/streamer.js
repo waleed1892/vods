@@ -2,9 +2,11 @@ import React from 'react'
 import styled from 'styled-components';
 import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
-import defaultImg from '../../assets/streamer.png'
+// import defaultImg from '../../public/streamer.png'
 import {useRouter} from "next/router";
 // import {useHistory} from "react-router-dom";
+import Image from "next/image";
+
 
 const StyledH1 = styled.div`
     color: black;
@@ -40,7 +42,7 @@ const Streamer = (props) => {
         <div className="col-lg-2 col-md-3 col-sm-4 mb-3" onClick={() => goVods(streamer.user_name)}
              style={{cursor: "pointer"}}>
             <div className="p-2">
-                <img loading={"lazy"} src={defaultImg} alt={streamer.user_name} className="rounded w-100"/>
+                <Image src='/streamer.png' layout={"responsive"} width={'100%'} height={'auto'} alt={streamer.user_name} className="rounded w-100"/>
             </div>
             <div>
                 <StyledH1><AccountCircleRoundedIcon/><span className="ml-1">{streamer.user_name}</span></StyledH1>

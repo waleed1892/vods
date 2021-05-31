@@ -23,7 +23,6 @@ export default function ErrorBoundary(props) {
             }
             checkToken(credentials).then(data => {
                 let tokenstatus = JSON.parse(data);
-                console.log("tokencheck", tokenstatus);
                 if (typeof tokenstatus.message !== 'undefined' && tokenstatus.message == "invalid access token") {
                     getTokenInfo()
                 } else {

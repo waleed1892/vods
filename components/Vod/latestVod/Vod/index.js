@@ -4,10 +4,10 @@ import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import moment from 'moment'
-import defaultImg from '../../../../assets/defaultImg.jpg'
+// import defaultImg from '../../../../public/defaultImg.jpg'
 // import { useHistory } from "react-router-dom";
 import {useRouter} from "next/router";
-
+import Image from "next/image";
 
 const Vod = (props) => {
     const {vod} = props
@@ -17,7 +17,7 @@ const Vod = (props) => {
     const imgUrlConvert = (url) => {
         let string = url.replace('%{width}', '500')
         string = string.replace('%{height}', '280')
-        return (vod.thumbnail_url !== "") ? string : defaultImg
+        return (vod.thumbnail_url !== "") ? string : '/defaultImg.jpg'
     }
 
     // calculation created time
@@ -41,8 +41,11 @@ const Vod = (props) => {
     }
     return (
         <div className="col-sm-3 col-md-3 col-lg-3 mb-3">
-            <div className="position-relative" style={{cursor: "pointer"}} onClick={() => player(vod.id)}>
-                <img loading={"lazy"} src={imgUrlConvert(vod.thumbnail_url)} alt={vod.title} className="rounded w-100"/>
+            <div className="position-relative" style={{cursor: "pointer"}}
+                 onClick={() => player(vod.id)}>
+                <Image src={imgUrlConvert(vod.thumbnail_url)} layout={"responsive"} width={500} height={280}
+                       alt={vod.title}
+                       className="rounded w-100"/>
             </div>
             <div>
                 <StyledP>{vod.title}</StyledP>

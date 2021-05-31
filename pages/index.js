@@ -18,7 +18,6 @@ const Home = ({initialVods}) => {
     // const auth_token = JSON.parse(localStorage.getItem('twitchToken'))['token']
 
     useEffect(() => {
-        console.log('tet')
         window.scrollTo(0, 0)
         // getTopVods()
     }, [])
@@ -65,7 +64,8 @@ const Home = ({initialVods}) => {
                 <StyledDiv>
                     <h1>Trending – Twitch Vods</h1>
                     <div style={{flexBasis: '100%', height: 0}}></div>
-                    <p>These <Link href='/'><a className='text-white'>Twitch Vods</a></Link> are trending for a reason! That’s right, these
+                    <p>These <Link href='/'><a className='text-white'>Twitch Vods</a></Link> are trending for a reason!
+                        That’s right, these
                         clips are
                         quickly
                         becoming the most popular in their categories. Here you can view up-and-coming content that has
@@ -75,17 +75,7 @@ const Home = ({initialVods}) => {
                 </StyledDiv>
             </div>
             <ListContent vods={vods} title="Twitch Vods Archive - Trending"/>
-
-
             {isLoading && <Loading/>}
-
-            {/*      <Helmet>*/}
-            {/*<title>Twitch Vods Archive</title>*/}
-            {/*<meta name="description" content="The Biggest Twitch Vods Archive Online, Search videos, Clips, Streamers, Games and get all streams in one place"*/}
-            {/*/>*/}
-            {/*      </Helmet>*/}
-
-
         </>
     )
 }

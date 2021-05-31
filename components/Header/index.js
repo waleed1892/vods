@@ -20,7 +20,7 @@ import {
 } from "./style";
 // import { useHistory } from "react-router-dom";
 import {useRouter} from 'next/router'
-import Logo from '../../assets/vods-logo.png'
+// import Logo from '../../public/vods-logo.png'
 import Link from 'next/link'
 import Image from "next/image";
 
@@ -57,8 +57,7 @@ const Header = () => {
                     <LogoSection>
                         <Link href="/">
                             <a href="/">
-                                <Image layout={'responsive'} width={280} height={80} src={Logo} alt={'logo'} className='w-100'/>
-                                {/*<img src={Logo} alt="Logo" className="w-100"/>*/}
+                                <Image layout={'responsive'} width={280} height={80} src='/vods-logo.png' alt={'logo'} className='w-100'/>
                             </a>
                         </Link>
                     </LogoSection>

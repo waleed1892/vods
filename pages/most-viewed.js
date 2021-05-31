@@ -49,7 +49,6 @@ const MostViewed = ({initialVods}) => {
         getVods(params)
             .then(data => {
                 let res = JSON.parse(data);
-                console.log(res)
                 let allVods = vods.slice().concat(res['vods'])
                 const sorted = allVods.sort((a, b) => videoSort(b['views'], a['views']));
                 const uniqueAddresses = getUnique(sorted, '_id')

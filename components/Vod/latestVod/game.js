@@ -1,9 +1,9 @@
 import React from 'react'
-import defaultImg from '../../../assets/streamer.png'
+// import defaultImg from '../../../public/streamer.png'
 // import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import {useRouter} from "next/router";
-
+import Image from "next/image";
 
 export const StyledP = styled.p`
     color: black;
@@ -25,7 +25,7 @@ const Game = (props) => {
   const imgUrlConvert = (url) => {
     let string = url.replace('{width}', '136')
     string = string.replace('{height}', '190')
-    return (game.box_art_url !== "") ? string : defaultImg
+    return (game.box_art_url !== "") ? string : '/streamer.png'
   }
 
   const goVods = (name) => {
@@ -34,8 +34,8 @@ const Game = (props) => {
 
   return (
     <div className="col-sm-3 col-md-3 col-lg-3 mb-3" style={{ cursor: "pointer" }} onClick={() => goVods(game.name)}>
-      <div className="d-flex align-items-center justify-content-center">
-        <img loading={"lazy"} src={imgUrlConvert(game.box_art_url)} className="rounded" />
+      <div style={{width:136,height:190}} className="d-flex align-items-center justify-content-center position-relative mx-auto">
+        <Image src={imgUrlConvert(game.box_art_url)} alt={game.name} layout={"fill"} className="rounded" />
       </div>
       <StyledP>&nbsp;{game.name}</StyledP>
     </div>

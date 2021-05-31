@@ -5,20 +5,15 @@ import GameList from '../Game'
 import Streamer from '../StreamerList/searchStreamer'
 import LatestVod from '../Vod/latestVod'
 import {SkeleLatestLoading, SkeleVodLoading} from '../../global/skleton';
-//import {Helmet} from "react-helmet";
 import Head from "next/head";
 import AdSense from "react-adsense";
-
 
 const ListContent = (props) => {
     const {vods, filter, title, type, profile} = props
     const homeTitle = "Twitch Vods Archive - Trending"
 
-
     const LatestVideo = () => {
         return (
-
-
             <div className="mt-3">
                 {
                     vods.length > 0 ?
@@ -35,13 +30,6 @@ const ListContent = (props) => {
 
     return (
         <div className="container">
-            {/*<StyledDiv>*/}
-            {/*    <h1>*/}
-            {/*        {title === homeTitle ? homeTitle : `Twitch Vods Archive - ${title}`}*/}
-            {/*    </h1>*/}
-            {/*    <div style={{flexBasis: '100%', height: 0}}></div>*/}
-            {/*    <h2>Best Streaming Service</h2>*/}
-            {/*</StyledDiv>*/}
             <AdSense.Google
                 client='ca-pub-3548998999865028'
                 slot='8898003939'
@@ -52,8 +40,6 @@ const ListContent = (props) => {
             {
                 title === "Twitch Vods Archive - Trending" ?
                     <LatestVideo/> :
-
-
                     <div className="mt-3">
                         <div>{profile && type.game && <GameList game={profile}/>}</div>
                         <div>{profile && type.user && <Streamer streamer={profile} title={title}/>}</div>
@@ -67,10 +53,7 @@ const ListContent = (props) => {
                                     [...Array(12)].map((item, i) => (
                                         <SkeleVodLoading key={i}/>
                                     ))
-
-
                             }
-
                             <Head>
                                 <title>{title} Twitch Vods Archive</title>
                                 <meta name="description" content="All The Streamers Twitch Vods In One Place"
@@ -79,12 +62,7 @@ const ListContent = (props) => {
                         </div>
                     </div>
             }
-
-
         </div>
-
-
     )
 }
-
 export default ListContent

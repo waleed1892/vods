@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import ListContent from '../components/ListContent'
+import dynamic from "next/dynamic";
+const ListContent = dynamic(() => import('../components/ListContent'));
 import {getAccessToken, getLatest} from '../rest/api'
 import {client_id} from '../global/twitchInfo'
 import {Loading} from '../global/Loading'

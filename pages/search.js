@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react'
+import dynamic from "next/dynamic";
+
 import {getAccessToken, getGameByGameName, getStreambyUserName, getStreamerVods, getVideosByGameId} from '../rest/api'
 import {client_id} from '../global/twitchInfo'
-import ListContent from '../components/ListContent/index'
+const ListContent = dynamic(() => import('../components/ListContent/index'))
 import {Loading} from '../global/Loading'
 // import {useLocation} from "react-router-dom";
 import styled from 'styled-components';

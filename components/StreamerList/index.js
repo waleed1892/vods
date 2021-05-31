@@ -1,5 +1,7 @@
 import React from 'react'
-import Streamer from './streamer'
+import dynamic from "next/dynamic";
+
+const Streamer = dynamic(() => import('./streamer'))
 import {SkeleStreamLoading} from '../../global/skleton';
 import styled from 'styled-components';
 import AdSense from "react-adsense";

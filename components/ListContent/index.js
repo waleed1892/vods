@@ -1,9 +1,10 @@
 import React from 'react'
-import Game from '../Vod/filterVod'
-import Vod from '../Vod/streamerVod'
-import GameList from '../Game'
-import Streamer from '../StreamerList/searchStreamer'
-import LatestVod from '../Vod/latestVod'
+import dynamic from "next/dynamic";
+const Game = dynamic(() => import('../Vod/filterVod'))
+const Vod = dynamic(() => import('../Vod/streamerVod'))
+const GameList = dynamic(() => import('../Game'))
+const Streamer = dynamic(() => import('../StreamerList/searchStreamer'))
+const LatestVod = dynamic(() => import('../Vod/latestVod'))
 import {SkeleLatestLoading, SkeleVodLoading} from '../../global/skleton';
 import Head from "next/head";
 import AdSense from "react-adsense";

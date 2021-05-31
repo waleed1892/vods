@@ -24,7 +24,7 @@ const Game = (props) => {
     return (
         <div className="col-sm-4 col-md-3 col-lg-2 mb-3" style={{cursor: "pointer"}} onClick={() => goVods(game.name)}>
             <div>
-                <Image src={imgUrlConvert(game.box_art_url)} layout={"responsive"} width={136} height={190}
+                <Image priority={true} src={imgUrlConvert(game.box_art_url)} layout={"responsive"} width={136} height={190}
                        alt={game.name} className="rounded w-100"/>
             </div>
             <StyledP>&nbsp;{game.name}</StyledP>

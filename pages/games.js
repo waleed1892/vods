@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react'
 // import GameContent from './gameContent'
 import {getAccessToken, getGamesTop} from '../rest/api'
 import {client_id} from '../global/twitchInfo'
-import {Loading} from '../global/Loading'
+// import {Loading} from '../global/Loading'
+const Loading = dynamic(() => import('../global/Loading').then(mod => mod.Loading))
 // import {Helmet} from "react-helmet";
 import GameContent from "../components/Games/gameContent";
 import Head from "next/head";
 import cookies from 'cookie-cutter';
 import {PageTitleSection} from "../components/Games/style";
 import Link from 'next/link'
+import dynamic from "next/dynamic";
 
 
 const GamePage = ({initialGames}) => {

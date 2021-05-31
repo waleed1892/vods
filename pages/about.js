@@ -14,8 +14,6 @@ export const StyledDiv = styled.div`
   }
 `;
 
-<a href="url">link text</a>
-
 const About = () => {
     return (
 
@@ -60,6 +58,4 @@ const About = () => {
 
     )
 }
-
-
 export default About

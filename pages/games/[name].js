@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
+import dynamic from "next/dynamic";
+
 import ListContent from '../../components/ListContent/index'
 import {getAccessToken, getGameByGameName, getVideosByGameId} from '../../rest/api'
 import {client_id} from '../../global/twitchInfo'
 // import { useParams } from 'react-router-dom'
-import {Loading} from '../../global/Loading'
+const Loading = dynamic(() => import('../../global/Loading').then(mod => mod.Loading))
 import {StyledDiv} from "../../components/ListContent/style";
-
-const cookies = require('cookie-cutter')
 
 const StreamerVods = ({game, gameVideos}) => {
     const [vods, setVods] = useState(gameVideos.data)
@@ -45,25 +45,27 @@ const StreamerVods = ({game, gameVideos}) => {
     }, [vods, queryAfter])
 
     // Get GameInfo from game name
-    const getGameInfo = () => {
-        const token = cookies.get('token')
-        const params = {
-            auth: token,
-            client_id: client_id,
-            game_name: title
-        }
-        getGameByGameName(params)
-            .then(data => {
-                if (data && data['data'].length > 0) {
-                    setGameId(data['data'][0].id)
-                    setTitle(data['data'][0].name)
-                }
-            })
-            .catch(error => console.log(JSON.stringify(error)));
-    }
+    // const getGameInfo = async () => {
+    //     const cookies = await require('cookie-cutter')
+    //     const token = cookies.get('token')
+    //     const params = {
+    //         auth: token,
+    //         client_id: client_id,
+    //         game_name: title
+    //     }
+    //     getGameByGameName(params)
+    //         .then(data => {
+    //             if (data && data['data'].length > 0) {
+    //                 setGameId(data['data'][0].id)
+    //                 setTitle(data['data'][0].name)
+    //             }
+    //         })
+    //         .catch(error => console.log(JSON.stringify(error)));
+    // }
 
     // Get Videos from streamer id
-    const getVideos = () => {
+    const getVideos = async () => {
+        const cookies = await require('cookie-cutter')
         const token = cookies.get('token')
         const params = {
             auth: token,
@@ -84,10 +86,6 @@ const StreamerVods = ({game, gameVideos}) => {
             })
             .catch(error => console.log(JSON.stringify(error)));
     }
-
-    useEffect(() => {
-        console.log(queryAfter)
-    }, [queryAfter])
 
     return (
         <>

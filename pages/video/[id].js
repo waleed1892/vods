@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import dynamic from "next/dynamic";
 // import {useHistory, useParams} from 'react-router-dom'
 import {PlayerSection, StyledSmall, UserSection, VideoPlayer} from '../../components/Player/style'
 import {getAccessToken, getVodbyId} from '../../rest/api'
@@ -7,7 +8,8 @@ import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import moment from 'moment'
 import {client_id} from '../../global/twitchInfo'
-import {SkelePlayerLoading} from '../../global/skleton'
+
+const SkelePlayerLoading = dynamic(() => import('../../global/skleton').then(mod => mod.SkelePlayerLoading))
 // import {Helmet} from "react-helmet";
 import Head from "next/head";
 import {useRouter} from "next/router";
@@ -107,8 +109,7 @@ const Player = ({video}) => {
 
 export default Player
 
-export async function getServerSideProps(ctx)
-{
+export async function getServerSideProps(ctx) {
     const {req, res} = ctx
     const {id} = ctx.params
     const token = await getAccessToken(req, res)

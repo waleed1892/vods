@@ -12,19 +12,10 @@ const Streamers = ({initialStreamers}) => {
     const [streamers, setStreamers] = useState(initialStreamers.data)
     const [queryAfter, setQueryAfter] = useState(initialStreamers.pagination.cursor)
     const [isLoading, setIsLoading] = useState(false)
-    // const [auth_token, setAuthToken] = useState(null)
-    // const auth_token = JSON.parse(localStorage.getItem('twitchToken'))['token']
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        // setAuthToken(JSON.parse(localStorage.getItem('twitchToken'))['token'])
-        // const auth_token = localStorage.getItem('twitchToken')
-        // getStreamersList()
     }, [])
-
-    // useEffect(() => {
-    //     getStreamersList()
-    // }, [auth_token])
 
     useEffect(() => {
         const handleScroll = () => {

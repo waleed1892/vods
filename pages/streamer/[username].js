@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react'
+import dynamic from "next/dynamic";
 import {getAccessToken, getStreambyUserName, getStreamerVods} from '../../rest/api'
 import {client_id} from '../../global/twitchInfo'
 // import {useParams} from 'react-router-dom'
-import {Loading} from '../../global/Loading'
+// import {Loading} from '../../global/Loading'
+const Loading = dynamic(() => import('../../global/Loading').then(mod => mod.Loading))
 import ListContent from "../../components/ListContent";
 import {StyledDiv} from "../../components/ListContent/style";
 
-const cookie = require('cookie-cutter')
+// const cookie = require('cookie-cutter')
 
 const StreamerVods = ({user, videos}) => {
     const [vods, setVods] = useState(videos.data)
@@ -41,25 +43,27 @@ const StreamerVods = ({user, videos}) => {
     }, [vods, queryAfter])
 
     // Get userInfo from user_name
-    const getUserInfo = () => {
-        const auth_token = cookie.get('token')
-        const params = {
-            auth: auth_token,
-            client_id: client_id,
-            user_name: name
-        }
-        getStreambyUserName(params)
-            .then(data => {
-                if (data && data['data'].length > 0) {
-                    setUserId(data['data'][0].id)
-                    setTitle(data['data'][0].display_name)
-                }
-            })
-            .catch(error => console.log(JSON.stringify(error)));
-    }
+    // const getUserInfo = async () => {
+    //     const cookies = await require('cookie-cutter')
+    //     const auth_token = cookies.get('token')
+    //     const params = {
+    //         auth: auth_token,
+    //         client_id: client_id,
+    //         user_name: name
+    //     }
+    //     getStreambyUserName(params)
+    //         .then(data => {
+    //             if (data && data['data'].length > 0) {
+    //                 setUserId(data['data'][0].id)
+    //                 setTitle(data['data'][0].display_name)
+    //             }
+    //         })
+    //         .catch(error => console.log(JSON.stringify(error)));
+    // }
 
     // Get Videos from streamer id
-    const getVideos = () => {
+    const getVideos = async () => {
+        const cookie = await require('cookie-cutter')
         const auth_token = cookie.get('token')
         const params = {
             auth: auth_token,

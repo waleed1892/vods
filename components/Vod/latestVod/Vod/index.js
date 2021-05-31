@@ -43,7 +43,7 @@ const Vod = (props) => {
         <div className="col-sm-3 col-md-3 col-lg-3 mb-3">
             <div className="position-relative" style={{cursor: "pointer"}}
                  onClick={() => player(vod.id)}>
-                <Image src={imgUrlConvert(vod.thumbnail_url)} layout={"responsive"} width={500} height={280}
+                <Image priority={true} src={imgUrlConvert(vod.thumbnail_url)} layout={"responsive"} width={500} height={280}
                        alt={vod.title}
                        className="rounded w-100"/>
             </div>

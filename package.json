@@ -29,5 +29,7 @@
     "react-loading-skeleton": "^2.2.0",
     "styled-components": "^5.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@next/bundle-analyzer": "^10.2.3"
+  }
 }

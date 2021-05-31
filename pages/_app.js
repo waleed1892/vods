@@ -3,7 +3,6 @@ import Header from "../components/Header";
 import {useEffect, useState} from "react";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import NProgress from "nprogress"
 import {useRouter} from "next/router"
 import {PageLoading} from "../global/Loading";
 

@@ -1,6 +1,6 @@
 // next.config.js
-// const withImages = require('next-images')
-// module.exports = withImages()
+const withCss = require("@zeit/next-css");
+const withPurgeCss = require("next-purgecss");
 module.exports = {
     images: {
         domains: ['static-cdn.jtvnw.net']

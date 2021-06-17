@@ -1,18 +1,15 @@
 import React, {useEffect, useState} from 'react'
+import dynamic from "next/dynamic";
 import {getAccessToken, getStreamers} from '../rest/api'
-import {client_id} from '../global/twitchInfo'
 import StreamerList from '../components/StreamerList'
-import {Loading} from '../global/Loading'
-// import {Helmet} from "react-helmet";
 import Head from "next/head";
 
-const cookieCutter = require('cookie-cutter')
+const Loading = dynamic(() => import('../global/Loading').then(mod => mod.Loading))
 
 const Streamers = ({initialStreamers}) => {
     const [streamers, setStreamers] = useState(initialStreamers.data)
     const [queryAfter, setQueryAfter] = useState(initialStreamers.pagination.cursor)
     const [isLoading, setIsLoading] = useState(false)
-
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -29,18 +26,17 @@ const Streamers = ({initialStreamers}) => {
     }, [streamers, queryAfter])
 
     // Get streamersList
-    const getStreamersList = () => {
+    const getStreamersList = async () => {
+        const cookieCutter = await require('cookie-cutter')
         const auth_token = cookieCutter.get('token')
         const params = {
             auth: auth_token,
-            client_id: client_id,
             after: queryAfter,
             first: 80
         }
         getStreamers(params)
-            .then(data => {
-                const res = JSON.parse(data)
-                setStreamers(streamers.slice().concat(res['data']))
+            .then(res => {
+                setStreamers([...streamers, ...res['data']])
                 setQueryAfter(res['pagination'].cursor || false)
                 setIsLoading(false)
             })
@@ -67,14 +63,13 @@ export async function getServerSideProps({req, res}) {
     const token = await getAccessToken(req, res)
     const params = {
         auth: token,
-        client_id: client_id,
         after: '',
         first: 80
     }
     const data = await getStreamers(params)
     return {
         props: {
-            initialStreamers: JSON.parse(data)
+            initialStreamers: data
         }, // will be passed to the page component as props
     }
 }

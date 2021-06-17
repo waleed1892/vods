@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
-// import {useHistory, useParams} from 'react-router-dom'
+import {Helmet} from "react-helmet";
+import AdSense from "react-adsense";
+import dynamic from "next/dynamic";
 import {PlayerSection, StyledSmall, UserSection, VideoPlayer} from './style'
 import {getVodbyId} from '../../rest/api'
 import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
@@ -7,9 +9,9 @@ import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import moment from 'moment'
 import {client_id} from '../../global/twitchInfo'
-import {SkelePlayerLoading} from '../../global/skleton'
-import {Helmet} from "react-helmet";
-import AdSense from "react-adsense";
+
+const SkelePlayerLoading = dynamic(() => import('../../global/skleton').then(mod => mod.SkelePlayerLoading))
+
 
 
 const Player = () => {

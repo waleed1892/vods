@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import ListContent from '../components/ListContent'
 import {getAccessToken, getVideosByUserId} from '../rest/api'
-import {client_id} from '../global/twitchInfo'
-import {Loading} from '../global/Loading'
 import Head from "next/head";
 import {StyledDiv} from "../components/ListContent/style";
+import dynamic from "next/dynamic";
 
-const cookieCutter = require('cookie-cutter');
-
+const Loading = dynamic(() => import('../global/Loading').then(mod => mod.Loading))
 
 const Longest = ({initialVods}) => {
 
@@ -54,18 +52,16 @@ const Longest = ({initialVods}) => {
     }, [vods, queryAfter])
 
     // Get streamersList
-    const getVods = () => {
-        // console.log(cookieCutter.get('token'))
+    const getVods = async () => {
+        const cookieCutter = await require('cookie-cutter');
         const auth_token = cookieCutter(document).get('token')
         const params = {
             auth: auth_token,
-            client_id: client_id,
             after: queryAfter,
             first: 4
         }
         getVideosByUserId(params)
-            .then(data => {
-                let res = JSON.parse(data);
+            .then(res => {
                 let allVods = vods.slice().concat(res['data'])
                 const sorted = allVods.sort((a, b) => videoSort(b['duration'], a['duration']));
                 setVods(sorted)
@@ -105,14 +101,13 @@ export async function getServerSideProps({req, res}) {
     const token = await getAccessToken(req, res)
     const params = {
         auth: token,
-        client_id: client_id,
         after: '',
         first: 4
     }
     const data = await getVideosByUserId(params)
     return {
         props: {
-            initialVods: JSON.parse(data)
+            initialVods: data
         }, // will be passed to the page component as props
     }
 }

@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import ListContent from '../components/ListContent'
 import {getAccessToken, getVods} from '../rest/api'
-import {client_id} from '../global/twitchInfo'
-import {Loading} from '../global/Loading'
-// import {Helmet} from "react-helmet";
 import Head from "next/head";
 import Link from "next/link";
 import {StyledDiv} from "../components/ListContent/style";
+import dynamic from "next/dynamic";
 
+const Loading = dynamic(() => import('../global/Loading').then(mod => mod.Loading))
 
 const MostViewed = ({initialVods}) => {
     const videoSort = (viewCount1, viewCount2) => {
@@ -43,13 +42,12 @@ const MostViewed = ({initialVods}) => {
     // Get streamersList
     const getTopVods = () => {
         const params = {
-            client_id: client_id,
             offset: queryAfter,
         }
         getVods(params)
             .then(data => {
-                let res = JSON.parse(data);
-                let allVods = vods.slice().concat(res['vods'])
+                let res = data;
+                let allVods = [...vods, ...res['vods']]
                 const sorted = allVods.sort((a, b) => videoSort(b['views'], a['views']));
                 const uniqueAddresses = getUnique(sorted, '_id')
                 setVods(uniqueAddresses)
@@ -79,7 +77,11 @@ const MostViewed = ({initialVods}) => {
                 <StyledDiv>
                     <h1>Most Viewed – Twitch Vods</h1>
                     <div style={{flexBasis: '100%', height: 0}}></div>
-                    <p>Our “most viewed” <Link href='/'><a className='text-white'>Twitch Vods</a></Link> are the clips that have made their mark in our minds and hearts, and will forever be industry favorites! These Vods provide only the most hilarious, engaging, or even helpful commentary along with interesting visuals. You’ll be sure to stop by this section time-after-time to revisit your favorites!</p>
+                    <p>Our “most viewed” <Link href='/'><a className='text-white'>Twitch Vods</a></Link> are the clips
+                        that have made their mark in our minds and hearts, and will forever be industry favorites! These
+                        Vods provide only the most hilarious, engaging, or even helpful commentary along with
+                        interesting visuals. You’ll be sure to stop by this section time-after-time to revisit your
+                        favorites!</p>
                 </StyledDiv>
             </div>
             <ListContent vods={vods} filter={true} title="Most viewed"/>
@@ -90,7 +92,6 @@ const MostViewed = ({initialVods}) => {
                 <title>Most viewed</title>
                 <meta name="description" content="Most Viewed Twitch Vods Clips Videos Ever"/>
             </Head>
-
         </>
     )
 }
@@ -100,13 +101,12 @@ export default MostViewed
 export async function getServerSideProps({req, res}) {
     const token = await getAccessToken(req, res)
     const params = {
-        client_id: client_id,
         offset: 0,
     }
     const data = await getVods(params)
     return {
         props: {
-            initialVods: JSON.parse(data)
+            initialVods: data
         }, // will be passed to the page component as props
     }
 }

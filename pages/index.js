@@ -1,16 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import dynamic from "next/dynamic";
-const ListContent = dynamic(() => import('../components/ListContent'));
 import {getAccessToken, getLatest} from '../rest/api'
-import {client_id} from '../global/twitchInfo'
-import {Loading} from '../global/Loading'
-// import {Helmet} from "react-helmet";
 import Head from 'next/head'
 import Link from 'next/link'
 import {StyledDiv} from "../components/ListContent/style";
 
-const cookie = require('cookie-cutter')
+import ListContent from '../components/ListContent'
 
+const Loading = dynamic(() => import('../global/Loading').then(mod => mod.Loading))
 const Home = ({initialVods}) => {
     const [vods, setVods] = useState(initialVods.data)
     const [queryAfter, setQueryAfter] = useState(initialVods.pagination.cursor)
@@ -20,7 +17,6 @@ const Home = ({initialVods}) => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        // getTopVods()
     }, [])
 
     useEffect(() => {
@@ -35,18 +31,17 @@ const Home = ({initialVods}) => {
     }, [vods, queryAfter])
 
     // Get streamersList
-    const getTopVods = () => {
+    const getTopVods = async () => {
+        const cookie = await require('cookie-cutter')
         const auth_token = cookie.get('token');
         const params = {
             auth: auth_token,
-            client_id: client_id,
             after: queryAfter,
             first: 5
         }
         getLatest(params)
-            .then(data => {
-                const res = JSON.parse(data)
-                setVods(vods.slice().concat(res['data']))
+            .then(res => {
+                setVods([...vods, ...res['data']])
                 setQueryAfter(res['pagination'].cursor || false)
                 setIsLoading(false)
             })
@@ -87,14 +82,14 @@ export async function getServerSideProps({req, res}) {
     const token = await getAccessToken(req, res)
     const params = {
         auth: token,
-        client_id: client_id,
         after: '',
         first: 5
     }
     const data = await getLatest(params)
+    // console.log(JSON.parse(data))
     return {
         props: {
-            initialVods: JSON.parse(data)
+            initialVods: data
         }, // will be passed to the page component as props
     }
 }

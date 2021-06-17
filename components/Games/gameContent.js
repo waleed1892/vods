@@ -1,8 +1,9 @@
 import React from 'react'
 import Game from '../../components/Game'
-import {SkeleGameListLoading} from '../../global/skleton'
-// import {Helmet} from "react-helmet";
 import AdSense from "react-adsense";
+import dynamic from "next/dynamic";
+
+const SkeleGameListLoading = dynamic(() => import('../../global/skleton').then(mod => mod.SkeleGameListLoading))
 
 const Content = (props) => {
     const {games} = props

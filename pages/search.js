@@ -1,16 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import dynamic from "next/dynamic";
-
-import {getAccessToken, getGameByGameName, getStreambyUserName, getStreamerVods, getVideosByGameId} from '../rest/api'
-import {client_id} from '../global/twitchInfo'
-const ListContent = dynamic(() => import('../components/ListContent/index'))
-import {Loading} from '../global/Loading'
-// import {useLocation} from "react-router-dom";
 import styled from 'styled-components';
 import AdSense from "react-adsense";
-
-const cookies = require('cookie-cutter')
-
+import {getAccessToken, getGameByGameName, getStreambyUserName, getStreamerVods, getVideosByGameId} from '../rest/api'
+const ListContent = dynamic(() => import('../components/ListContent/index'))
+const Loading = dynamic(() => import('../global/Loading').then(mod => mod.Loading))
 
 export const StyledDiv = styled.div`
     display: flex;
@@ -130,11 +124,11 @@ const Search = ({game, user, search, query, videos, queryAfterProp, noResultProp
     }, [vods, queryAfter])
 
     // Get GameInfo from game name
-    const getUserInfo = () => {
+    const getUserInfo = async () => {
+        const cookies = await require('cookie-cutter')
         const auth_token = cookies.get('token')
         const params = {
             auth: auth_token,
-            client_id: client_id,
             user_name: query
         }
         getStreambyUserName(params)
@@ -150,17 +144,16 @@ const Search = ({game, user, search, query, videos, queryAfterProp, noResultProp
     }
 
     // Get Videos from streamer id
-    const getVideosbyUserId = () => {
+    const getVideosbyUserId = async () => {
+        const cookies = await require('cookie-cutter')
         const auth_token = cookies.get('token')
         const params = {
             auth: auth_token,
-            client_id: client_id,
             user_id: userInfo.id,
             after: queryAfter
         }
         getStreamerVods(params)
-            .then(data => {
-                let res = JSON.parse(data)
+            .then(res => {
                 setVods(vods.slice().concat(res['data']))
                 setQueryAfter(res['pagination'].cursor || 'noData')
                 setIsLoading(false)
@@ -170,17 +163,16 @@ const Search = ({game, user, search, query, videos, queryAfterProp, noResultProp
     }
 
     // Get Videos from game id
-    const getVideosbyGameId = () => {
+    const getVideosbyGameId = async () => {
+        const cookies = await require('cookie-cutter')
         const auth_token = cookies.get('token')
         const params = {
             auth: auth_token,
-            client_id: client_id,
             game_id: gameInfo.id,
             after: queryAfter
         }
         getVideosByGameId(params)
-            .then(data => {
-                let res = JSON.parse(data)
+            .then(res => {
                 setVods(vods.slice().concat(res['data']))
                 setQueryAfter(res['pagination'].cursor || 'noData')
                 setIsLoading(false)
@@ -205,7 +197,6 @@ export async function getServerSideProps(ctx) {
     const token = await getAccessToken(req, res);
     const params = {
         auth: token,
-        client_id: client_id,
         game_name: query.q
     }
     let game = '';
@@ -219,18 +210,16 @@ export async function getServerSideProps(ctx) {
     if (!gameData.data.length) {
         const params = {
             auth: token,
-            client_id: client_id,
             user_name: query.q
         }
         const userData = await getStreambyUserName(params)
         if (userData.data.length) {
             const params = {
                 auth: token,
-                client_id: client_id,
                 user_id: userData.data[0].id,
                 after: ''
             }
-            const userVideos = JSON.parse(await getStreamerVods(params))
+            const userVideos = await getStreamerVods(params)
             videos = userVideos.data
             if (!videos.length) {
                 noResultProp = true
@@ -246,11 +235,10 @@ export async function getServerSideProps(ctx) {
         game = gameData.data[0]
         const params = {
             auth: token,
-            client_id: client_id,
             game_id: game.id,
             after: ''
         }
-        const gameVideos = JSON.parse(await getVideosByGameId(params))
+        const gameVideos = await getVideosByGameId(params)
         videos = gameVideos.data
         if (videos.length) {
             noResultProp = false

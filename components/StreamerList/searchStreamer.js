@@ -42,7 +42,7 @@ const Streamer = (props) => {
         <div className="col-lg-2 col-md-3 col-sm-4 mb-3" onClick={() => goVods(streamer.login)}
              style={{cursor: "pointer"}}>
             <div className="p-2">
-                <Image src='/streamer.png' layout={"fill"} alt={'search'} className="rounded w-100"/>
+                <Image src='/streamer.png' layout={"responsive"} width={'100%'} height={'auto'} alt={'search'} className="rounded w-100"/>
             </div>
             <div>
                 <StyledH1><AccountCircleRoundedIcon/><span className="ml-1">{streamer.login}</span></StyledH1>

@@ -1,13 +1,15 @@
 import React from 'react'
 import dynamic from "next/dynamic";
+import Head from "next/head";
+import AdSense from "react-adsense";
 const Game = dynamic(() => import('../Vod/filterVod'))
 const Vod = dynamic(() => import('../Vod/streamerVod'))
 const GameList = dynamic(() => import('../Game'))
 const Streamer = dynamic(() => import('../StreamerList/searchStreamer'))
 const LatestVod = dynamic(() => import('../Vod/latestVod'))
-import {SkeleLatestLoading, SkeleVodLoading} from '../../global/skleton';
-import Head from "next/head";
-import AdSense from "react-adsense";
+const SkeleLatestLoading = dynamic(() => import('../../global/skleton').then(mod => mod.SkeleLatestLoading))
+const SkeleVodLoading = dynamic(() => import('../../global/skleton').then(mod => mod.SkeleVodLoading))
+
 
 const ListContent = (props) => {
     const {vods, filter, title, type, profile} = props

@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
-// import {Helmet} from "react-helmet";
 import AdSense from 'react-adsense';
 import Head from "next/head";
-
 
 export const StyledDiv = styled.div`
   margin-top: 20px;

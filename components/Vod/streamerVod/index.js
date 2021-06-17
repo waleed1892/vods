@@ -15,10 +15,19 @@ const Vod = (props) => {
     // let history = useHistory()
     const router = useRouter()
     // thumb url convert
-    const imgUrlConvert = (url) => {
-        let string = url.replace('%{width}', '500')
-        string = string.replace('%{height}', '280')
-        return (vod.thumbnail_url !== "") ? string : '/defaultImg.jpg'
+    const imgUrlConvert = (vod) => {
+        let string = ''
+        if ('thumbnail_url' in vod) {
+            string = vod.thumbnail_url
+            string = string.replace('%{width}', '500')
+            string = string.replace('%{height}', '280')
+            return (vod.thumbnail_url !== "") ? string : '/defaultImg.jpg'
+        } else {
+            string = vod.preview.template
+            string = string.replace('{width}', '500')
+            string = string.replace('{height}', '280')
+            return (vod.preview.template !== "https://vod-secure.twitch.tv/_404/404_processing_{width}x{height}.png") ? string : '/defaultImg.jpg'
+        }
     }
 
     // calculation created time
@@ -44,9 +53,10 @@ const Vod = (props) => {
     return (
         <div className="col-sm-6 col-md-4 col-lg-3 mb-3">
             <div className="position-relative" style={{cursor: "pointer"}} onClick={() => player(vod.id)}>
-                <Image loading={"eager"} src={imgUrlConvert(vod.thumbnail_url)} layout={"responsive"} width={500} height={280}
+                <Image loading={"eager"} src={imgUrlConvert(vod)}
+                       layout={"responsive"} width={500} height={280}
                        alt={vod.title} className="rounded w-100"/>
-                {title === "Most viewed" && <StyledSpan>{vod.view_count} views</StyledSpan>}
+                {title === "Most viewed" && <StyledSpan>{vod.views} views</StyledSpan>}
             </div>
             <div>
                 <StyledP>{vod.title}</StyledP>

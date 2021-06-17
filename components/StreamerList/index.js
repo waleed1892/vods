@@ -2,7 +2,7 @@ import React from 'react'
 import dynamic from "next/dynamic";
 
 const Streamer = dynamic(() => import('./streamer'))
-import {SkeleStreamLoading} from '../../global/skleton';
+const SkeleStreamLoading = dynamic(() => import('../../global/skleton').then(mod => mod.SkeleStreamLoading));
 import styled from 'styled-components';
 import AdSense from "react-adsense";
 

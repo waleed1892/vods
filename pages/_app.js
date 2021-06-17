@@ -4,7 +4,9 @@ import {useEffect, useState} from "react";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {useRouter} from "next/router"
-import {PageLoading} from "../global/Loading";
+import dynamic from "next/dynamic";
+
+const PageLoading = dynamic(() => import("../global/Loading").then(mod => mod.PageLoading));
 
 function MyApp({Component, pageProps}) {
     const router = useRouter();

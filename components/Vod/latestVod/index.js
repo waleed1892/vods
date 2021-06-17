@@ -4,7 +4,6 @@ import Vod from './Vod'
 
 const LatestVod = (props) => {
   const { data } = props
-
   return (
     <div className="row">
       <Game game={data['game']} />

@@ -2,18 +2,17 @@ import React, {useEffect, useState} from 'react'
 import dynamic from "next/dynamic";
 
 import ListContent from '../../components/ListContent/index'
-import {getAccessToken, getGameByGameName, getVideosByGameId} from '../../rest/api'
-import {client_id} from '../../global/twitchInfo'
-// import { useParams } from 'react-router-dom'
+import {getVideosByGameName} from '../../rest/api'
+
 const Loading = dynamic(() => import('../../global/Loading').then(mod => mod.Loading))
 import {StyledDiv} from "../../components/ListContent/style";
 
 const StreamerVods = ({game, gameVideos}) => {
-    const [vods, setVods] = useState(gameVideos.data)
-    const [queryAfter, setQueryAfter] = useState(gameVideos.pagination.cursor)
+    const [vods, setVods] = useState(gameVideos.vods)
+    const [queryAfter, setQueryAfter] = useState(40)
     const [isLoading, setIsLoading] = useState(false)
-    const [gameId, setGameId] = useState(game.data[0].id)
-    const [title, setTitle] = useState(game.data[0].name)
+    // const [gameId, setGameId] = useState(game.id)
+    const [title, setTitle] = useState(game.name)
     // const { name } = useParams();
     // const auth_token = JSON.parse(localStorage.getItem('twitchToken'))['token']
 
@@ -67,20 +66,36 @@ const StreamerVods = ({game, gameVideos}) => {
     const getVideos = async () => {
         const cookies = await require('cookie-cutter')
         const token = cookies.get('token')
+        // const params = {
+        //     auth: token,
+        //     client_id: client_id,
+        //     game_id: gameId,
+        //     after: queryAfter
+        // }
+        // getVideosByGameId(params)
+        //     .then(data => {
+        //         const res = JSON.parse(data)
+        //         if (!res.error) {
+        //             setVods(vods.slice().concat(res['data']))
+        //             setQueryAfter(res['pagination'].cursor || false)
+        //         } else {
+        //             setQueryAfter(false)
+        //         }
+        //         setIsLoading(false)
+        //     })
+        //     .catch(error => console.log(JSON.stringify(error)));
         const params = {
-            auth: token,
-            client_id: client_id,
-            game_id: gameId,
-            after: queryAfter
+            game: title,
+            after: queryAfter,
+            limit: 40
         }
-        getVideosByGameId(params)
-            .then(data => {
-                const res = JSON.parse(data)
+        getVideosByGameName(params)
+            .then(res => {
                 if (!res.error) {
-                    setVods(vods.slice().concat(res['data']))
-                    setQueryAfter(res['pagination'].cursor || false)
+                    setVods([...vods, ...res.vods])
+                    setQueryAfter(queryAfter + 40)
                 } else {
-                    setQueryAfter(false)
+                    setQueryAfter(0)
                 }
                 setIsLoading(false)
             })
@@ -107,24 +122,33 @@ export default StreamerVods
 export async function getServerSideProps(ctx) {
     const {name} = ctx.params
     const {req, res} = ctx
-    const token = await getAccessToken(req, res)
-    let params = {
-        auth: token,
-        client_id: client_id,
-        game_name: name
+    // const token = await getAccessToken(req, res)
+    // let params = {
+    //     auth: token,
+    //     client_id: client_id,
+    //     game_name: name
+    // }
+    // const data = await getGameByGameName(params)
+    // params = {
+    //     auth: token,
+    //     client_id: client_id,
+    //     game_id: data.data[0].id,
+    //     after: ''
+    // }
+    // const gameVideos = await getVideosByGameId(params)
+    const params = {
+        game: name,
+        after: 0,
+        limit: 40
     }
-    const data = await getGameByGameName(params)
-    params = {
-        auth: token,
-        client_id: client_id,
-        game_id: data.data[0].id,
-        after: ''
+    const data = {
+        name: name,
     }
-    const gameVideos = await getVideosByGameId(params)
+    const gameVideos = await getVideosByGameName(params)
     return {
         props: {
             game: data,
-            gameVideos: JSON.parse(gameVideos)
+            gameVideos: gameVideos
         }, // will be passed to the page component as props
     }
 }

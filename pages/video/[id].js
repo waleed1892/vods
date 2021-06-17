@@ -1,19 +1,24 @@
 import React, {useState} from 'react'
 import dynamic from "next/dynamic";
-// import {useHistory, useParams} from 'react-router-dom'
-import {PlayerSection, StyledSmall, UserSection, VideoPlayer} from '../../components/Player/style'
+// import {PlayerSection, StyledSmall, UserSection, VideoPlayer} from '../../components/Player/style'
 import {getAccessToken, getVodbyId} from '../../rest/api'
-import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
-import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
+// import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
+// import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
+// import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import moment from 'moment'
-import {client_id} from '../../global/twitchInfo'
-
-const SkelePlayerLoading = dynamic(() => import('../../global/skleton').then(mod => mod.SkelePlayerLoading))
-// import {Helmet} from "react-helmet";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import AdSense from "react-adsense";
+const PlayerSection = dynamic(() => import('../../components/Player/style').then(mod => mod.PlayerSection))
+const StyledSmall = dynamic(() => import('../../components/Player/style').then(mod => mod.StyledSmall))
+const UserSection = dynamic(() => import('../../components/Player/style').then(mod => mod.UserSection))
+const VideoPlayer = dynamic(() => import('../../components/Player/style').then(mod => mod.VideoPlayer))
+const HistoryRoundedIcon = dynamic(() => import('@material-ui/icons/HistoryRounded'))
+const AccountCircleRoundedIcon = dynamic(() => import('@material-ui/icons/AccountCircleRounded'))
+const AccessTimeIcon = dynamic(() => import('@material-ui/icons/AccessTime'))
+const SkelePlayerLoading = dynamic(() => import('../../global/skleton').then(mod => mod.SkelePlayerLoading))
+// import {Helmet} from "react-helmet";
+
 
 
 const Player = ({video}) => {
@@ -115,13 +120,12 @@ export async function getServerSideProps(ctx) {
     const token = await getAccessToken(req, res)
     const params = {
         auth: token,
-        client_id: client_id,
         id: id
     }
     const data = await getVodbyId(params)
     return {
         props: {
-            video: JSON.parse(data)
+            video: data
         }, // will be passed to the page component as props
     }
 }

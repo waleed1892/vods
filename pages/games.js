@@ -1,13 +1,9 @@
 import React, {useEffect, useState} from 'react'
-// import GameContent from './gameContent'
 import {getAccessToken, getGamesTop} from '../rest/api'
-import {client_id} from '../global/twitchInfo'
-// import {Loading} from '../global/Loading'
+
 const Loading = dynamic(() => import('../global/Loading').then(mod => mod.Loading))
-// import {Helmet} from "react-helmet";
 import GameContent from "../components/Games/gameContent";
 import Head from "next/head";
-import cookies from 'cookie-cutter';
 import {PageTitleSection} from "../components/Games/style";
 import Link from 'next/link'
 import dynamic from "next/dynamic";
@@ -36,18 +32,17 @@ const GamePage = ({initialGames}) => {
     }, [games, queryAfter])
 
     // Get streamersList
-    const getGamesList = () => {
+    const getGamesList = async () => {
+        const cookies = await require('cookie-cutter');
         const auth_token = cookies.get('token');
         const params = {
             auth: auth_token,
-            client_id: client_id,
             after: queryAfter,
             first: 80
         }
         getGamesTop(params)
-            .then(data => {
-                const res = JSON.parse(data)
-                setGames(games.slice().concat(res['data']))
+            .then(res => {
+                setGames([...games, ...res['data']])
                 setQueryAfter(res['pagination'].cursor || false)
                 setIsLoading(false)
             })
@@ -89,14 +84,13 @@ export async function getServerSideProps({req, res}) {
     const token = await getAccessToken(req, res)
     const params = {
         auth: token,
-        client_id: client_id,
         after: '',
         first: 80
     }
     const data = await getGamesTop(params)
     return {
         props: {
-            initialGames: JSON.parse(data)
+            initialGames: data
         }, // will be passed to the page component as props
     }
 }

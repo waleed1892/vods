@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import dynamic from "next/dynamic";
 import {getAccessToken, getStreambyUserName, getStreamerVods} from '../../rest/api'
-import {client_id} from '../../global/twitchInfo'
-// import {useParams} from 'react-router-dom'
-// import {Loading} from '../../global/Loading'
-const Loading = dynamic(() => import('../../global/Loading').then(mod => mod.Loading))
+
 import ListContent from "../../components/ListContent";
 import {StyledDiv} from "../../components/ListContent/style";
+
+const Loading = dynamic(() => import('../../global/Loading').then(mod => mod.Loading))
 
 // const cookie = require('cookie-cutter')
 
@@ -67,13 +66,11 @@ const StreamerVods = ({user, videos}) => {
         const auth_token = cookie.get('token')
         const params = {
             auth: auth_token,
-            client_id: client_id,
             user_id: userId,
             after: queryAfter
         }
         getStreamerVods(params)
-            .then(data => {
-                const res = JSON.parse(data)
+            .then(res => {
                 setVods(vods.slice().concat(res['data']))
                 setQueryAfter(res['pagination'].cursor || 'noData')
                 setIsLoading(false)
@@ -104,14 +101,11 @@ export async function getServerSideProps(ctx) {
     const token = await getAccessToken(req, res)
     let params = {
         auth: token,
-        client_id: client_id,
         user_name: username
     }
     const data = await getStreambyUserName(params)
-
     params = {
         auth: token,
-        client_id: client_id,
         user_id: data.data[0].id,
         after: ""
     }
@@ -119,7 +113,7 @@ export async function getServerSideProps(ctx) {
     return {
         props: {
             user: data,
-            videos: JSON.parse(videos)
+            videos: videos
         }, // will be passed to the page component as props
     }
 }

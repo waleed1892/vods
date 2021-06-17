@@ -42,7 +42,8 @@ const Streamer = (props) => {
         <div className="col-lg-2 col-md-3 col-sm-4 mb-3" onClick={() => goVods(streamer.user_name)}
              style={{cursor: "pointer"}}>
             <div className="p-2">
-                <Image src='/streamer.png' layout={"responsive"} width={'100%'} height={'auto'} alt={streamer.user_name} className="rounded w-100"/>
+                <Image src='/streamer.png' layout={"responsive"} width={'100%'} height={'auto'} alt={streamer.user_name}
+                       className="rounded w-100"/>
             </div>
             <div>
                 <StyledH1><AccountCircleRoundedIcon/><span className="ml-1">{streamer.user_name}</span></StyledH1>

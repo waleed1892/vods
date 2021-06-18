@@ -5,10 +5,11 @@ import {getAccessToken, getVodbyId} from '../../rest/api'
 // import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
 // import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 // import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import moment from 'moment'
 import Head from "next/head";
-import {useRouter} from "next/router";
 import AdSense from "react-adsense";
+import {calculationTime} from "../../helpers";
+import Link from 'next/link'
+
 const PlayerSection = dynamic(() => import('../../components/Player/style').then(mod => mod.PlayerSection))
 const StyledSmall = dynamic(() => import('../../components/Player/style').then(mod => mod.StyledSmall))
 const UserSection = dynamic(() => import('../../components/Player/style').then(mod => mod.UserSection))
@@ -20,10 +21,8 @@ const SkelePlayerLoading = dynamic(() => import('../../global/skleton').then(mod
 // import {Helmet} from "react-helmet";
 
 
-
 const Player = ({video}) => {
     // let history = useHistory()
-    const router = useRouter();
     // const { video_id } = useParams();
     const [vod, setVod] = useState(video.data[0])
     // const auth_token = JSON.parse(localStorage.getItem('twitchToken'))['token']
@@ -42,21 +41,6 @@ const Player = ({video}) => {
     //             .catch(error => console.log(JSON.stringify(error)));
     //     }
     // }, [video_id])
-
-    // calculation created time
-    const calculationTime = (published_at) => {
-        if (published_at === null) return 'time ago'
-        let __startTime = moment(published_at).format();
-        let __endTime = moment(new Date()).format();
-        let __duration = moment.duration(moment(__endTime).diff(__startTime));
-        let __hours = __duration.asHours();
-        let duration = (__hours < 24) ? (__hours < 1 ? `${parseInt(60 * __hours)}m` : `${parseInt(__hours)}h`) : `${parseInt(__hours / 24)}d`
-        return `${duration} ago`
-    }
-
-    const goVods = (user_name) => {
-        router.push(`/streamer/${user_name}`)
-    }
 
     return (
         <div className="container">
@@ -90,8 +74,12 @@ const Player = ({video}) => {
                             <h4>{vod.title}</h4>
                         </div>
                         <div className="d-flex">
-                            <UserSection onClick={() => goVods(vod.user_name)}><AccountCircleRoundedIcon/><span
-                                className="ml-1">{vod.user_name}</span></UserSection>
+                            <Link href={`/streamer/${vod.user_name}`}>
+                                <a>
+                                    <UserSection><AccountCircleRoundedIcon/><span
+                                        className="ml-1">{vod.user_name}</span></UserSection>
+                                </a>
+                            </Link>
                             <StyledSmall><HistoryRoundedIcon/><span
                                 className="ml-1">{calculationTime(vod.published_at)}</span></StyledSmall>
                             <StyledSmall><AccessTimeIcon/><span className="ml-1">{vod.duration}</span></StyledSmall>

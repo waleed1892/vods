@@ -38,7 +38,7 @@ const ListContent = (props) => {
                 slot='8898003939'
                 style={{display: 'block'}}
                 layout='in-article'
-                responsive={true}
+                responsive={'true'}
                 format='fluid'
             />
             {

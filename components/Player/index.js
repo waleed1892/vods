@@ -7,11 +7,9 @@ import {getVodbyId} from '../../rest/api'
 import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import moment from 'moment'
-import {client_id} from '../../global/twitchInfo'
+import {calculationTime} from "../../helpers";
 
 const SkelePlayerLoading = dynamic(() => import('../../global/skleton').then(mod => mod.SkelePlayerLoading))
-
 
 
 const Player = () => {
@@ -24,7 +22,6 @@ const Player = () => {
         if (video_id !== undefined) {
             const params = {
                 auth: auth_token,
-                client_id: client_id,
                 id: video_id
             }
             getVodbyId(params)
@@ -34,17 +31,6 @@ const Player = () => {
                 .catch(error => console.log(JSON.stringify(error)));
         }
     }, [video_id])
-
-    // calculation created time
-    const calculationTime = (published_at) => {
-        if (published_at === null) return 'time ago'
-        let __startTime = moment(published_at).format();
-        let __endTime = moment(new Date()).format();
-        let __duration = moment.duration(moment(__endTime).diff(__startTime));
-        let __hours = __duration.asHours();
-        let duration = (__hours < 24) ? (__hours < 1 ? `${parseInt(60 * __hours)}m` : `${parseInt(__hours)}h`) : `${parseInt(__hours / 24)}d`
-        return `${duration} ago`
-    }
 
     const goVods = (user_name) => {
         // history.push(`/streamer/${user_name}`)

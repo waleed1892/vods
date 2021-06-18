@@ -2,8 +2,8 @@ import React from 'react'
 // import defaultImg from '../../../public/streamer.png'
 // import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
-import {useRouter} from "next/router";
 import Image from "next/image";
+import Link from 'next/link'
 
 export const StyledP = styled.p`
     color: black;
@@ -17,29 +17,27 @@ export const StyledP = styled.p`
 `;
 
 const Game = (props) => {
-  const { game } = props
-  // let history = useHistory()
-  const router = useRouter();
+    const {game} = props
 
-  // thumb url convert
-  const imgUrlConvert = (url) => {
-    let string = url.replace('{width}', '136')
-    string = string.replace('{height}', '190')
-    return (game.box_art_url !== "") ? string : '/streamer.png'
-  }
+    // thumb url convert
+    const imgUrlConvert = (url) => {
+        let string = url.replace('{width}', '136')
+        string = string.replace('{height}', '190')
+        return (game.box_art_url !== "") ? string : '/streamer.png'
+    }
 
-  const goVods = (name) => {
-    router.push(`/games/${name}`)
-  }
-
-  return (
-    <div className="col-sm-3 col-md-3 col-lg-3 mb-3" style={{ cursor: "pointer" }} onClick={() => goVods(game.name)}>
-      <div style={{width:136,height:190}} className="d-flex align-items-center justify-content-center position-relative mx-auto">
-        <Image loading={"eager"} src={imgUrlConvert(game.box_art_url)} alt={game.name} layout={"fill"} className="rounded" />
-      </div>
-      <StyledP>&nbsp;{game.name}</StyledP>
-    </div>
-  )
+    return (
+        <Link href={`/games/${game.name}`}>
+            <a className="col-sm-3 col-md-3 col-lg-3 mb-3 text-decoration-none">
+                <div style={{width: 136, height: 190}}
+                     className="d-flex align-items-center justify-content-center position-relative mx-auto">
+                    <Image loading={"eager"} src={imgUrlConvert(game.box_art_url)} alt={game.name} layout={"fill"}
+                           className="rounded"/>
+                </div>
+                <StyledP>&nbsp;{game.name}</StyledP>
+            </a>
+        </Link>
+    )
 }
 
 export default Game

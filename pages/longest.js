@@ -60,15 +60,26 @@ const Longest = ({initialVods}) => {
             after: queryAfter,
             first: 4
         }
-        getVideosByUserId(params)
-            .then(res => {
-                let allVods = vods.slice().concat(res['data'])
-                const sorted = allVods.sort((a, b) => videoSort(b['duration'], a['duration']));
-                setVods(sorted)
-                setQueryAfter(res['page'].cursor || false)
-                setIsLoading(false)
-            })
-            .catch(error => console.log(JSON.stringify(error)));
+        import('../rest/api').then(mod => {
+            mod.getVideosByUserId(params)
+                .then(res => {
+                    let allVods = [...vods, ...res['data']]
+                    const sorted = allVods.sort((a, b) => videoSort(b['duration'], a['duration']));
+                    setVods(sorted)
+                    setQueryAfter(res['page'].cursor || false)
+                    setIsLoading(false)
+                })
+                .catch(error => console.log(JSON.stringify(error)));
+        })
+        // getVideosByUserId(params)
+        //     .then(res => {
+        //         let allVods = [...vods, ...res['data']]
+        //         const sorted = allVods.sort((a, b) => videoSort(b['duration'], a['duration']));
+        //         setVods(sorted)
+        //         setQueryAfter(res['page'].cursor || false)
+        //         setIsLoading(false)
+        //     })
+        //     .catch(error => console.log(JSON.stringify(error)));
     }
     return (
 

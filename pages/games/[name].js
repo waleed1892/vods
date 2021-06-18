@@ -64,8 +64,8 @@ const StreamerVods = ({game, gameVideos}) => {
 
     // Get Videos from streamer id
     const getVideos = async () => {
-        const cookies = await require('cookie-cutter')
-        const token = cookies.get('token')
+        // const cookies = await require('cookie-cutter')
+        // const token = cookies.get('token')
         // const params = {
         //     auth: token,
         //     client_id: client_id,
@@ -89,17 +89,30 @@ const StreamerVods = ({game, gameVideos}) => {
             after: queryAfter,
             limit: 40
         }
-        getVideosByGameName(params)
-            .then(res => {
-                if (!res.error) {
-                    setVods([...vods, ...res.vods])
-                    setQueryAfter(queryAfter + 40)
-                } else {
-                    setQueryAfter(0)
-                }
-                setIsLoading(false)
-            })
-            .catch(error => console.log(JSON.stringify(error)));
+        import('../../rest/api').then(mod => {
+            mod.getVideosByGameName(params)
+                .then(res => {
+                    if (!res.error) {
+                        setVods([...vods, ...res.vods])
+                        setQueryAfter(queryAfter + 40)
+                    } else {
+                        setQueryAfter(0)
+                    }
+                    setIsLoading(false)
+                })
+                .catch(error => console.log(JSON.stringify(error)));
+        })
+        // getVideosByGameName(params)
+        //     .then(res => {
+        //         if (!res.error) {
+        //             setVods([...vods, ...res.vods])
+        //             setQueryAfter(queryAfter + 40)
+        //         } else {
+        //             setQueryAfter(0)
+        //         }
+        //         setIsLoading(false)
+        //     })
+        //     .catch(error => console.log(JSON.stringify(error)));
     }
 
     return (

@@ -44,17 +44,30 @@ const MostViewed = ({initialVods}) => {
         const params = {
             offset: queryAfter,
         }
-        getVods(params)
-            .then(data => {
-                let res = data;
-                let allVods = [...vods, ...res['vods']]
-                const sorted = allVods.sort((a, b) => videoSort(b['views'], a['views']));
-                const uniqueAddresses = getUnique(sorted, '_id')
-                setVods(uniqueAddresses)
-                setQueryAfter(queryAfter + 20)
-                setIsLoading(false)
-            })
-            .catch(error => console.log(JSON.stringify(error)));
+        import('../rest/api').then(mod => {
+            mod.getVods(params)
+                .then(data => {
+                    let res = data;
+                    let allVods = [...vods, ...res['vods']]
+                    const sorted = allVods.sort((a, b) => videoSort(b['views'], a['views']));
+                    const uniqueAddresses = getUnique(sorted, '_id')
+                    setVods(uniqueAddresses)
+                    setQueryAfter(queryAfter + 20)
+                    setIsLoading(false)
+                })
+                .catch(error => console.log(JSON.stringify(error)));
+        })
+        // getVods(params)
+        //     .then(data => {
+        //         let res = data;
+        //         let allVods = [...vods, ...res['vods']]
+        //         const sorted = allVods.sort((a, b) => videoSort(b['views'], a['views']));
+        //         const uniqueAddresses = getUnique(sorted, '_id')
+        //         setVods(uniqueAddresses)
+        //         setQueryAfter(queryAfter + 20)
+        //         setIsLoading(false)
+        //     })
+        //     .catch(error => console.log(JSON.stringify(error)));
     }
 
     function getUnique(arr, comp) {

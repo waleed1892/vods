@@ -1,10 +1,9 @@
 import React from 'react'
-import Game from '../../components/Game'
 import AdSense from "react-adsense";
 import dynamic from "next/dynamic";
 
 const SkeleGameListLoading = dynamic(() => import('../../global/skleton').then(mod => mod.SkeleGameListLoading))
-
+const Game = dynamic(() => import('../../components/Game'))
 const Content = (props) => {
     const {games} = props
 
@@ -19,22 +18,17 @@ const Content = (props) => {
                 layout='in-article'
                 format='fluid'
             />
-            <div className="mt-3">
-            </div>
+            <div className="row mt-3">
+                {
 
-            <div className="mt-3">
-                <div className="row">
-                    {
+                    games.length > 0 ? games.map((game, i) => (
+                            <Game game={game} key={i}/>
+                        )) :
+                        [...Array(12)].map((item, i) => (
+                            <SkeleGameListLoading key={i}/>
+                        ))
 
-                        games.length > 0 ? games.map((game, i) => (
-                                <Game game={game} key={i}/>
-                            )) :
-                            [...Array(12)].map((item, i) => (
-                                <SkeleGameListLoading key={i}/>
-                            ))
-
-                    }
-                </div>
+                }
             </div>
         </div>
     )

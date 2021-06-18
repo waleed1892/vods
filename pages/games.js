@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import {getAccessToken, getGamesTop} from '../rest/api'
-
-const Loading = dynamic(() => import('../global/Loading').then(mod => mod.Loading))
+import dynamic from "next/dynamic";
 import GameContent from "../components/Games/gameContent";
 import Head from "next/head";
 import {PageTitleSection} from "../components/Games/style";
 import Link from 'next/link'
-import dynamic from "next/dynamic";
+import {getAccessToken, getGamesTop} from "../rest/api";
 
+const Loading = dynamic(() => import('../global/Loading').then(mod => mod.Loading))
 
 const GamePage = ({initialGames}) => {
     const [games, setGames] = useState(initialGames.data)
@@ -40,13 +39,21 @@ const GamePage = ({initialGames}) => {
             after: queryAfter,
             first: 80
         }
-        getGamesTop(params)
-            .then(res => {
+        import('../rest/api').then(mod => {
+            mod.getGamesTop(params).then(res => {
                 setGames([...games, ...res['data']])
                 setQueryAfter(res['pagination'].cursor || false)
                 setIsLoading(false)
             })
-            .catch(error => console.log(JSON.stringify(error)));
+                .catch(error => console.log(JSON.stringify(error)));
+        })
+        // getGamesTop(params)
+        //     .then(res => {
+        //         setGames([...games, ...res['data']])
+        //         setQueryAfter(res['pagination'].cursor || false)
+        //         setIsLoading(false)
+        //     })
+        //     .catch(error => console.log(JSON.stringify(error)));
     }
 
     return (
@@ -72,8 +79,6 @@ const GamePage = ({initialGames}) => {
                 <meta name="description" content="Search Twitch Vods By Games On The Biggest Library Online"
                 />
             </Head>
-
-
         </>
     )
 }

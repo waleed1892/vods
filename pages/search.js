@@ -124,24 +124,24 @@ const Search = ({game, user, search, query, videos, queryAfterProp, noResultProp
     }, [vods, queryAfter])
 
     // Get GameInfo from game name
-    const getUserInfo = async () => {
-        const cookies = await require('cookie-cutter')
-        const auth_token = cookies.get('token')
-        const params = {
-            auth: auth_token,
-            user_name: query
-        }
-        getStreambyUserName(params)
-            .then(data => {
-                if (data && data['data'].length > 0) {
-                    setSearchType({...searchType, user: true, game: false})
-                    setUserInfo(data['data'][0])
-                } else {
-                    setNoResult(true)
-                }
-            })
-            .catch(error => console.log(JSON.stringify(error)));
-    }
+    // const getUserInfo = async () => {
+    //     const cookies = await require('cookie-cutter')
+    //     const auth_token = cookies.get('token')
+    //     const params = {
+    //         auth: auth_token,
+    //         user_name: query
+    //     }
+    //     getStreambyUserName(params)
+    //         .then(data => {
+    //             if (data && data['data'].length > 0) {
+    //                 setSearchType({...searchType, user: true, game: false})
+    //                 setUserInfo(data['data'][0])
+    //             } else {
+    //                 setNoResult(true)
+    //             }
+    //         })
+    //         .catch(error => console.log(JSON.stringify(error)));
+    // }
 
     // Get Videos from streamer id
     const getVideosbyUserId = async () => {
@@ -152,14 +152,24 @@ const Search = ({game, user, search, query, videos, queryAfterProp, noResultProp
             user_id: userInfo.id,
             after: queryAfter
         }
-        getStreamerVods(params)
-            .then(res => {
-                setVods(vods.slice().concat(res['data']))
-                setQueryAfter(res['pagination'].cursor || 'noData')
-                setIsLoading(false)
-                if (res['data'].length === 0 && vods.length === 0) setNoResult(true)
-            })
-            .catch(error => console.log(JSON.stringify(error)));
+        import('../rest/api').then(mod => {
+            mod.getStreamerVods(params)
+                .then(res => {
+                    setVods(vods.slice().concat(res['data']))
+                    setQueryAfter(res['pagination'].cursor || 'noData')
+                    setIsLoading(false)
+                    if (res['data'].length === 0 && vods.length === 0) setNoResult(true)
+                })
+                .catch(error => console.log(JSON.stringify(error)));
+        })
+        // getStreamerVods(params)
+        //     .then(res => {
+        //         setVods(vods.slice().concat(res['data']))
+        //         setQueryAfter(res['pagination'].cursor || 'noData')
+        //         setIsLoading(false)
+        //         if (res['data'].length === 0 && vods.length === 0) setNoResult(true)
+        //     })
+        //     .catch(error => console.log(JSON.stringify(error)));
     }
 
     // Get Videos from game id
@@ -171,13 +181,22 @@ const Search = ({game, user, search, query, videos, queryAfterProp, noResultProp
             game_id: gameInfo.id,
             after: queryAfter
         }
-        getVideosByGameId(params)
-            .then(res => {
-                setVods(vods.slice().concat(res['data']))
-                setQueryAfter(res['pagination'].cursor || 'noData')
-                setIsLoading(false)
-            })
-            .catch(error => console.log(JSON.stringify(error)));
+        import('../rest/api').then(mod => {
+            mod.getVideosByGameId(params)
+                .then(res => {
+                    setVods(vods.slice().concat(res['data']))
+                    setQueryAfter(res['pagination'].cursor || 'noData')
+                    setIsLoading(false)
+                })
+                .catch(error => console.log(JSON.stringify(error)));
+        })
+        // getVideosByGameId(params)
+        //     .then(res => {
+        //         setVods(vods.slice().concat(res['data']))
+        //         setQueryAfter(res['pagination'].cursor || 'noData')
+        //         setIsLoading(false)
+        //     })
+        //     .catch(error => console.log(JSON.stringify(error)));
     }
 
     return (

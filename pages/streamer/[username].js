@@ -69,13 +69,22 @@ const StreamerVods = ({user, videos}) => {
             user_id: userId,
             after: queryAfter
         }
-        getStreamerVods(params)
-            .then(res => {
-                setVods(vods.slice().concat(res['data']))
-                setQueryAfter(res['pagination'].cursor || 'noData')
-                setIsLoading(false)
-            })
-            .catch(error => console.log(JSON.stringify(error)));
+        import('../../rest/api').then(mod => {
+            mod.getStreamerVods(params)
+                .then(res => {
+                    setVods(vods.slice().concat(res['data']))
+                    setQueryAfter(res['pagination'].cursor || 'noData')
+                    setIsLoading(false)
+                })
+                .catch(error => console.log(JSON.stringify(error)));
+        })
+        // getStreamerVods(params)
+        //     .then(res => {
+        //         setVods(vods.slice().concat(res['data']))
+        //         setQueryAfter(res['pagination'].cursor || 'noData')
+        //         setIsLoading(false)
+        //     })
+        //     .catch(error => console.log(JSON.stringify(error)));
     }
 
     return (

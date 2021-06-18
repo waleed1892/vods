@@ -34,13 +34,22 @@ const Streamers = ({initialStreamers}) => {
             after: queryAfter,
             first: 80
         }
-        getStreamers(params)
-            .then(res => {
-                setStreamers([...streamers, ...res['data']])
-                setQueryAfter(res['pagination'].cursor || false)
-                setIsLoading(false)
-            })
-            .catch(error => console.log(JSON.stringify(error)));
+        import('../rest/api').then(mod => {
+            mod.getStreamers(params)
+                .then(res => {
+                    setStreamers([...streamers, ...res['data']])
+                    setQueryAfter(res['pagination'].cursor || false)
+                    setIsLoading(false)
+                })
+                .catch(error => console.log(JSON.stringify(error)));
+        })
+        // getStreamers(params)
+        //     .then(res => {
+        //         setStreamers([...streamers, ...res['data']])
+        //         setQueryAfter(res['pagination'].cursor || false)
+        //         setIsLoading(false)
+        //     })
+        //     .catch(error => console.log(JSON.stringify(error)));
     }
 
     return (

@@ -42,7 +42,8 @@ export const getAccessToken = async (req, res) => {
     const cookies = Cookies(req, res);
     let token = cookies.get('token');
     if (!token) {
-        const moment = await require('moment')
+        // const moment = await require('moment')
+        const moment = await require('dayjs')
         const data = await getToken();
         cookies.set('token', data.access_token, {
             httpOnly: false,
@@ -97,15 +98,17 @@ export const getLatest = async (params) => {
     };
     const gamesData = games.data;
     for (let i = 0; i < gamesData.length; i++) {
-        const id = gamesData[i].id;
-        const gamesVideos = await axiosInstance.get(`helix/videos?sort=views&period=month&first=3&game_id=${id}`, {
+        // const id = gamesData[i].id;
+        const name = gamesData[i].name;
+        // const gamesVideos = await axiosInstance.get(`helix/videos?sort=views&period=month&first=3&game_id=${id}`, {
+        const gamesVideos = await axiosInstance.get(`kraken/videos/top?sort=views&period=month&limit=3&game=${name}`, {
             headers: {
-                Authorization: `Bearer ${params.auth}`,
+                Accept: `application/vnd.twitchtv.v5+json`
             }
         }).then(res => res.data)
-        if (!gamesVideos.data.length)
+        if (!gamesVideos.vods.length)
             continue
-        videos.data.push({game: gamesData[i], vod: gamesVideos.data});
+        videos.data.push({game: gamesData[i], vod: gamesVideos.vods});
     }
     return videos
 

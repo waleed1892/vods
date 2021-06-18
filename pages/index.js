@@ -39,13 +39,22 @@ const Home = ({initialVods}) => {
             after: queryAfter,
             first: 5
         }
-        getLatest(params)
-            .then(res => {
-                setVods([...vods, ...res['data']])
-                setQueryAfter(res['pagination'].cursor || false)
-                setIsLoading(false)
-            })
-            .catch(error => console.log(JSON.stringify(error)));
+        import('../rest/api').then(mod => {
+            mod.getLatest(params)
+                .then(res => {
+                    setVods([...vods, ...res['data']])
+                    setQueryAfter(res['pagination'].cursor || false)
+                    setIsLoading(false)
+                })
+                .catch(error => console.log(JSON.stringify(error)));
+        })
+        // getLatest(params)
+        //     .then(res => {
+        //         setVods([...vods, ...res['data']])
+        //         setQueryAfter(res['pagination'].cursor || false)
+        //         setIsLoading(false)
+        //     })
+        //     .catch(error => console.log(JSON.stringify(error)));
     }
 
 

@@ -52,9 +52,9 @@ class MyDocument extends Document {
                         defer={true}
                         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3548998999865028"
                         crossOrigin="anonymous"></script>
-                <script async
-                        defer={true}
-                        src="https://www.googletagmanager.com/gtag/js?id=UA-145394651-21"></script>
+                {/*<script async*/}
+                {/*        defer={true}*/}
+                {/*        src="https://www.googletagmanager.com/gtag/js?id=UA-145394651-21"></script>*/}
             </Html>
         )
     }

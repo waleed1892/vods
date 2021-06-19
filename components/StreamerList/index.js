@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 const Streamer = dynamic(() => import('./streamer'))
 const SkeleStreamLoading = dynamic(() => import('../../global/skleton').then(mod => mod.SkeleStreamLoading));
 import styled from 'styled-components';
-// import AdSense from "react-adsense";
+import AdSense from "react-adsense";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -34,23 +34,12 @@ const StreamerList = (props) => {
                     streamers. Each stream has their Twitch Name available alongside an image and their follower
                     count!</p>
             </StyledDiv>
-            {/*<AdSense.Google*/}
-            {/*    client='ca-pub-3548998999865028'*/}
-            {/*    slot='1263329565'*/}
-            {/*    style={{display: 'block'}}*/}
-            {/*    layout='in-article'*/}
-            {/*    format='fluid'*/}
-            {/*/>*/}
-            <ins
-                className="adsbygoogle adbanner-customize"
-                style={{
-                    display: "block"
-                }}
-                data-ad-client='ca-pub-3548998999865028'
-                data-ad-slot='1263329565'
-                data-ad-layout="in-article"
-                data-full-width-responsive="true"
-                data-ad-format="fluid"
+            <AdSense.Google
+                client='ca-pub-3548998999865028'
+                slot='1263329565'
+                style={{display: 'block'}}
+                layout='in-article'
+                format='fluid'
             />
             <div className="mt-3">
                 <div className="row">

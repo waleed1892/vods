@@ -18,14 +18,14 @@ function MyApp({Component, pageProps}) {
             jssStyles.parentNode.removeChild(jssStyles)
         window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-        gtag('config', 'UA-145394651-21', {
-            page_path: window.location.pathname,
-        });
+        // function gtag() {
+        //     dataLayer.push(arguments);
+        // }
+        //
+        // gtag('js', new Date());
+        // gtag('config', 'UA-145394651-21', {
+        //     page_path: window.location.pathname,
+        // });
     }, [])
     useEffect(() => {
         router.events.on('routeChangeStart', function () {

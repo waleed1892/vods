@@ -1,7 +1,7 @@
 import React from 'react'
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import AdSense from "react-adsense";
+// import AdSense from "react-adsense";
 const Game = dynamic(() => import('../Vod/filterVod'))
 const Vod = dynamic(() => import('../Vod/streamerVod'))
 const GameList = dynamic(() => import('../Game'))
@@ -33,13 +33,21 @@ const ListContent = (props) => {
 
     return (
         <div className="container">
-            <AdSense.Google
-                client='ca-pub-3548998999865028'
-                slot='8898003939'
-                style={{display: 'block'}}
-                layout='in-article'
-                responsive={'true'}
-                format='fluid'
+            {/*<AdSense.Google*/}
+            {/*    client='ca-pub-3548998999865028'*/}
+            {/*    slot='8898003939'*/}
+            {/*    style={{display: 'block'}}*/}
+            {/*    layout='in-article'*/}
+            {/*    responsive={'true'}*/}
+            {/*    format='fluid'*/}
+            {/*/>*/}
+            <ins
+                data-ad-client='ca-pub-3548998999865028'
+                data-ad-slot='8898003939'
+                data-ad-style={{display: 'block'}}
+                data-ad-layout='in-article'
+                data-ad-responsive={'true'}
+                data-ad-format='fluid'
             />
             {
                 title === "Twitch Vods Archive - Trending" ?

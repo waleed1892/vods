@@ -43,15 +43,15 @@ class MyDocument extends Document {
                     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
                     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
                     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+                    <script async
+                            defer={true}
+                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3548998999865028"
+                            crossOrigin="anonymous"></script>
                 </Head>
                 <body>
                 <Main/>
                 <NextScript/>
                 </body>
-                <script async
-                        defer={true}
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3548998999865028"
-                        crossOrigin="anonymous"></script>
                 {/*<script async*/}
                 {/*        defer={true}*/}
                 {/*        src="https://www.googletagmanager.com/gtag/js?id=UA-145394651-21"></script>*/}

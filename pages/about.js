@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import AdSense from 'react-adsense';
+// import AdSense from 'react-adsense';
 import Head from "next/head";
 
 export const StyledDiv = styled.div`
@@ -40,12 +40,22 @@ const About = () => {
                 </p>
                 <p><span>Advertisement:&nbsp;</span><a href="mailto: Advertisement@Vods.tv">Advertisement@Vods.tv</a>
                 </p>
-                <AdSense.Google
-                    client='ca-pub-3548998999865028'
-                    slot='79915789369'
-                    style={{display: 'block'}}
-                    layout='in-article'
-                    format='fluid'
+                {/*<AdSense.Google*/}
+                {/*    client='ca-pub-3548998999865028'*/}
+                {/*    slot='79915789369'*/}
+                {/*    style={{display: 'block'}}*/}
+                {/*    layout='in-article'*/}
+                {/*    format='fluid'*/}
+                {/*/>*/}
+                <ins
+                    className="adsbygoogle adbanner-customize"
+                    style={{
+                        display: "block"
+                    }}
+                    data-ad-client='ca-pub-3548998999865028'
+                    data-ad-slot='79915789369'
+                    data-ad-layout="in-article"
+                    data-full-width-responsive="true"
                 />
 
                 <Head>

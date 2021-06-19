@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 // import { Link } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
-import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
-import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
-
-
+// import { useHistory } from "react-router-dom";
+import {useRouter} from 'next/router'
+// import Logo from '../../public/vods-logo.png'
+import Link from 'next/link'
+import Image from "next/image";
+import dynamic from "next/dynamic";
 import {
-    Layout,
     LogoSearch,
     LogoSection,
     MobileHeader,
@@ -18,11 +19,10 @@ import {
     StyledSearchIcon,
     StyledUl
 } from "./style";
-// import { useHistory } from "react-router-dom";
-import {useRouter} from 'next/router'
-// import Logo from '../../public/vods-logo.png'
-import Link from 'next/link'
-import Image from "next/image";
+
+const Layout = dynamic(() => import('./style').then(mod => mod.Layout))
+const MenuRoundedIcon = dynamic(() => import('@material-ui/icons/MenuRounded'));
+const ClearRoundedIcon = dynamic(() => import('@material-ui/icons/ClearRounded'));
 
 
 const Header = () => {
@@ -57,7 +57,8 @@ const Header = () => {
                     <LogoSection>
                         <Link href="/">
                             <a href="/">
-                                <Image layout={'responsive'} width={280} height={80} src='/vods-logo.png' alt={'logo'} className='w-100'/>
+                                <Image layout={'responsive'} width={280} height={80} src='/vods-logo.png' alt={'logo'}
+                                       className='w-100'/>
                             </a>
                         </Link>
                     </LogoSection>

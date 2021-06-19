@@ -222,7 +222,7 @@ export const getVideosByUserId = async (params) => {
     const streamers = await getStreamers(params)
     const videos = []
     for (const streamer of streamers.data) {
-        const userVideos = await axiosInstance.get(`helix/videos?user_id=${streamer.user_id}`, {
+        const userVideos = await axiosInstance.get(`helix/videos?user_id=${streamer.user_id}&first=10`, {
             headers: {
                 Authorization: `Bearer ${params.auth}`
             }

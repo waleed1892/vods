@@ -15,8 +15,8 @@ const FilterVod = (props) => {
     // let history = useHistory()
     // thumb url convert
     const imgUrlConvert = (url) => {
-        let string = url.replace('{width}', '500')
-        string = string.replace('{height}', '280')
+        let string = url.replace('{width}', '260')
+        string = string.replace('{height}', '150')
         return (vod.thumbnail_url !== "") ? string : '/defaultImg.jpg'
     }
 

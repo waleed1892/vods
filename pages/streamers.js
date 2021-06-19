@@ -32,7 +32,7 @@ const Streamers = ({initialStreamers}) => {
         const params = {
             auth: auth_token,
             after: queryAfter,
-            first: 80
+            first: 40
         }
         import('../rest/api').then(mod => {
             mod.getStreamers(params)
@@ -73,7 +73,7 @@ export async function getServerSideProps({req, res}) {
     const params = {
         auth: token,
         after: '',
-        first: 80
+        first: 40
     }
     const data = await getStreamers(params)
     return {

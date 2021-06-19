@@ -43,11 +43,11 @@ export const getAccessToken = async (req, res) => {
     let token = cookies.get('token');
     if (!token) {
         // const moment = await require('moment')
-        const moment = await require('dayjs')
+        const moment = await require('moment')
         const data = await getToken();
         cookies.set('token', data.access_token, {
             httpOnly: false,
-            expires: moment().add(data.expires_in, "ms").toDate()
+            expires: moment().add(data.expires_in, "milliseconds").toDate()
         })
         token = data.access_token
     }

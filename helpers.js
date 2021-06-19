@@ -1,7 +1,5 @@
 // calculation duration
-import moment from "dayjs";
-const duration = require('dayjs/plugin/duration')
-moment.extend(duration)
+import moment from "moment";
 export const calculationDuration = (duration) => {
     let d = Number(duration);
     let h = Math.floor(d / 3600);

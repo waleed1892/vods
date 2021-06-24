@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import dynamic from "next/dynamic";
 // import {PlayerSection, StyledSmall, UserSection, VideoPlayer} from '../../components/Player/style'
 import {getAccessToken, getVodbyId} from '../../rest/api'
@@ -64,7 +64,7 @@ const Player = ({video}) => {
                         <VideoPlayer>
                             <iframe
                                 title={vod.title}
-                                src={`https://player.twitch.tv/?video=v${vod.id}&parent=www.vods.tv&parent=vods.tv`}
+                                src={`https://player.twitch.tv/?video=v${vod.id}&parent=https://www.vods.tv`}
                                 height="100%"
                                 width="100%"
                                 allowFullScreen={true}>
